@@ -25,8 +25,14 @@ alias pd='sudo protonvpn d'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias xl='xrdb -load ~/.Xresources'
 alias dc='docker'
-
+alias nb='newsboat'
+export PATH=$PATH:$HOME/.local/bin
 export VISUAL=vim  
+export DEFAULT_USER="$(whoami)" 
+#My Github Config
+git config --global user.email "william.pring@pm.me"
+git config --global user.name "William Pring"
+
 #My NPM Config
 npm set init.author.email "william.pring@pm.me"
 npm set init.author.name "William Pring"
@@ -34,3 +40,4 @@ source /usr/share/nvm/init-nvm.sh
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     startx
 fi
+PROMPT="[%n:%1~] "
