@@ -1,0 +1,14 @@
+#!/bin/bash
+IPHONE_DIR="/mnt/iphone"
+MEDIA_IPHONE_DIR="/media/iphone/photo"
+echo "Pairing Iphone..."
+idevicepair pair
+echo "Checking Iphone mnt point"
+echo "mounting iphone"
+ifuse -o allow_other $IPHONE_DIR
+cp -r /mnt/iphone/DCIM/* $MEDIA_IPHONE_DIR
+echo "unpairing iphone"
+idevicepair unpair
+echo "unmount iphone"
+sudo umount $IPHONE_DIR
+rm -f -r $MEDIA_IPHONE_DIR/*/*.MOV
