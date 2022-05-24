@@ -1,4 +1,3 @@
-#!/bin/bash
 IPHONE_DIR="/mnt/iphone"
 MEDIA_IPHONE_DIR="/media/iphone/photo"
 echo "Pairing Iphone..."

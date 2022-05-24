@@ -1,4 +1,3 @@
-#!/bin/bash
 killall -u $USER 'scream'
 scream -i bridge0 -o pulse &
 
