@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.schemaStorageSet = void 0;
+const zod_1 = require("zod");
+const schemaStorageSetParams = zod_1.z.object({
+    key: zod_1.z.string(),
+    value: zod_1.z.string(),
+    storeId: zod_1.z.string().optional(),
+});
+const schemaStorageSetResults = zod_1.z.void();
+exports.schemaStorageSet = {
+    params: schemaStorageSetParams,
+    result: schemaStorageSetResults,
+};

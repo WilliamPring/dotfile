@@ -1,0 +1,5 @@
+import { PolkadotTransaction, RawPolkadotTransaction } from "./types";
+export declare const rawTx: RawPolkadotTransaction;
+export declare const rawTxFull: Required<RawPolkadotTransaction>;
+export declare const tx: PolkadotTransaction;
+export declare const txFull: Required<PolkadotTransaction>;

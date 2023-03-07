@@ -1,0 +1,6 @@
+import type { WalletCapabilities, WalletUserId, WalletInfo } from "@ledgerhq/wallet-api-core";
+import type { RPCHandler } from "../types";
+export declare const capabilities: RPCHandler<WalletCapabilities["result"]>;
+export declare const userId: RPCHandler<WalletUserId["result"]>;
+export declare const info: RPCHandler<WalletInfo["result"]>;
+//# sourceMappingURL=wallet.d.ts.map

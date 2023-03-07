@@ -1,0 +1,84 @@
+[2022-11-04T02:47:16.958Z] Log level: Info
+[2022-11-04T02:47:16.959Z] [info] Validating found git in: git
+[2022-11-04T02:47:16.966Z] [info] Using git 2.38.1 from git
+[2022-11-04T02:47:16.973Z] > git rev-parse --show-toplevel [2ms]
+[2022-11-04T02:47:16.973Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:16.976Z] > git rev-parse --show-toplevel [0ms]
+[2022-11-04T02:47:16.976Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:16.985Z] > git rev-parse --show-toplevel [6ms]
+[2022-11-04T02:47:16.986Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:16.990Z] > git rev-parse --show-toplevel [2ms]
+[2022-11-04T02:47:16.990Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:16.996Z] > git rev-parse --show-toplevel [3ms]
+[2022-11-04T02:47:16.996Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:16.999Z] > git rev-parse --show-toplevel [1ms]
+[2022-11-04T02:47:16.999Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.002Z] > git rev-parse --show-toplevel [0ms]
+[2022-11-04T02:47:17.002Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.005Z] > git rev-parse --show-toplevel [0ms]
+[2022-11-04T02:47:17.005Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.008Z] > git rev-parse --show-toplevel [0ms]
+[2022-11-04T02:47:17.008Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.011Z] > git rev-parse --show-toplevel [0ms]
+[2022-11-04T02:47:17.011Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.014Z] > git rev-parse --show-toplevel [0ms]
+[2022-11-04T02:47:17.014Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.017Z] > git rev-parse --show-toplevel [0ms]
+[2022-11-04T02:47:17.021Z] > git rev-parse --git-dir --git-common-dir [1ms]
+[2022-11-04T02:47:17.022Z] [info] Open repository: /home/will/.nvm
+[2022-11-04T02:47:17.028Z] > git rev-parse --show-toplevel [0ms]
+[2022-11-04T02:47:17.028Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.031Z] > git rev-parse --show-toplevel [0ms]
+[2022-11-04T02:47:17.031Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.035Z] > git status -z -uall [9ms]
+[2022-11-04T02:47:17.038Z] > git rev-parse --show-toplevel [4ms]
+[2022-11-04T02:47:17.038Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.041Z] > git symbolic-ref --short HEAD [3ms]
+[2022-11-04T02:47:17.041Z] fatal: ref HEAD is not a symbolic ref
+[2022-11-04T02:47:17.044Z] > git rev-parse --show-toplevel [3ms]
+[2022-11-04T02:47:17.044Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.047Z] > git rev-parse HEAD [3ms]
+[2022-11-04T02:47:17.053Z] > git remote --verbose [1ms]
+[2022-11-04T02:47:17.053Z] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [3ms]
+[2022-11-04T02:47:17.054Z] > git rev-parse --show-toplevel [7ms]
+[2022-11-04T02:47:17.054Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.059Z] > git rev-parse --show-toplevel [3ms]
+[2022-11-04T02:47:17.059Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.063Z] > git config --get commit.template [4ms]
+[2022-11-04T02:47:17.066Z] > git rev-parse --show-toplevel [4ms]
+[2022-11-04T02:47:17.066Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.069Z] > git rev-parse --show-toplevel [0ms]
+[2022-11-04T02:47:17.069Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.071Z] > git status -z -uall [5ms]
+[2022-11-04T02:47:17.074Z] > git rev-parse --show-toplevel [3ms]
+[2022-11-04T02:47:17.074Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.077Z] > git symbolic-ref --short HEAD [3ms]
+[2022-11-04T02:47:17.077Z] fatal: ref HEAD is not a symbolic ref
+[2022-11-04T02:47:17.080Z] > git rev-parse --show-toplevel [3ms]
+[2022-11-04T02:47:17.080Z] fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[2022-11-04T02:47:17.080Z] > git rev-parse HEAD [0ms]
+[2022-11-04T02:47:17.085Z] > git remote --verbose [0ms]
+[2022-11-04T02:47:17.086Z] > git for-each-ref --sort -committerdate --format %(refname) %(objectname) %(*objectname) [4ms]
+[2022-11-04T02:47:17.089Z] > git config --get commit.template [0ms]
+[2022-11-04T02:47:32.368Z] > git check-ignore -v -z --stdin [1ms]

@@ -1,0 +1,28 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.get = exports.set = void 0;
+const wallet_api_core_1 = require("@ledgerhq/wallet-api-core");
+const set = async (req, context, handlers) => {
+    const walletHandler = handlers["storage.set"];
+    if (!walletHandler) {
+        throw new wallet_api_core_1.ServerError((0, wallet_api_core_1.createNotImplementedByWallet)("storage.set"));
+    }
+    const safeParams = wallet_api_core_1.schemaStorageSet.params.parse(req.params);
+    const { key, value, storeId: optionalStoreId } = safeParams;
+    const storeId = optionalStoreId || context.config.appId;
+    return walletHandler({ key, value, storeId });
+};
+exports.set = set;
+const get = async (req, context, handlers) => {
+    const walletHandler = handlers["storage.get"];
+    if (!walletHandler) {
+        throw new wallet_api_core_1.ServerError((0, wallet_api_core_1.createNotImplementedByWallet)("storage.get"));
+    }
+    const safeParams = wallet_api_core_1.schemaStorageGet.params.parse(req.params);
+    const { key, storeId: optionalStoreId } = safeParams;
+    const storeId = optionalStoreId || context.config.appId;
+    return {
+        value: await walletHandler({ key, storeId }),
+    };
+};
+exports.get = get;

@@ -1,0 +1,142 @@
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TxDecoder = void 0;
+var proto_signing_1 = require("@cosmjs/proto-signing");
+var encoding_1 = require("@cosmjs/encoding");
+var tx_1 = require("@cosmjs/proto-signing/build/codec/cosmos/tx/v1beta1/tx");
+var snakecaseKeys = __importStar(require("snakecase-keys"));
+var bytes_1 = require("./bytes/bytes");
+var typeurls_1 = require("../cosmos/v1beta1/types/typeurls");
+var TxDecoder = (function () {
+    function TxDecoder() {
+        this.cosmJSRegistry = new proto_signing_1.Registry(Object.entries(typeurls_1.typeUrlMappings));
+        this.isValidHex = function (h) {
+            var re = /[0-9A-Fa-f]/g;
+            if (!re.test(h)) {
+                throw new TypeError('Invalid Hex provided.');
+            }
+        };
+        this.getSignaturesJson = function (signaturesArray) {
+            var signatures = [];
+            if (signaturesArray) {
+                signatures = signaturesArray.map(function (e) { return encoding_1.toBase64(typeof e !== typeof undefined ? e : new Uint8Array()); });
+            }
+            return signatures;
+        };
+        this.typeUrlTransformer = function (str) { return str.replace(/type_url/g, '@type'); };
+        this.libDecodedTxBody = Object.create({});
+        this.libDecodedAuthInfo = Object.create({});
+        this.libDecodedSignatures = Object.create([]);
+    }
+    TxDecoder.prototype.fromHex = function (txHex) {
+        if (!txHex) {
+            throw new TypeError("Received malformed transaction hex.");
+        }
+        var sanitisedTxHex = bytes_1.Bytes.clean0x(txHex);
+        try {
+            this.isValidHex(sanitisedTxHex);
+            var encodedTxBytes = bytes_1.Bytes.fromHexString(sanitisedTxHex).toUint8Array();
+            var libDecodedTx = tx_1.Tx.decode(encodedTxBytes);
+            this.libDecodedSignatures = libDecodedTx.signatures;
+            this.libDecodedAuthInfo = libDecodedTx.authInfo;
+            this.libDecodedTxBody = libDecodedTx.body;
+            return this;
+        }
+        catch (error) {
+            throw new TypeError("Error decoding provided transaction hex.");
+        }
+    };
+    TxDecoder.prototype.toCosmosJSON = function () {
+        var txObject = {
+            tx: {
+                body: Object.create({}),
+                authInfo: Object.create({}),
+                signatures: Object.create([[]]),
+            },
+        };
+        txObject.tx.body = this.getTxBodyJson(this.libDecodedTxBody);
+        txObject.tx.signatures = this.getSignaturesJson(this.libDecodedSignatures);
+        txObject.tx.authInfo = this.getAuthInfoJson(this.libDecodedAuthInfo);
+        var stringifiedTx = JSON.stringify(snakecaseKeys.default(txObject));
+        var cosmosApiFormatTxJson = this.typeUrlTransformer(stringifiedTx);
+        return cosmosApiFormatTxJson;
+    };
+    TxDecoder.prototype.getTxBodyJson = function (txBody) {
+        var _this = this;
+        var txBodyStringified = JSON.stringify(tx_1.TxBody.toJSON(txBody));
+        var parsedTxBody = JSON.parse(txBodyStringified);
+        var obj = __assign({}, parsedTxBody);
+        obj.messages = txBody.messages.map(function (_a) {
+            var typeUrl = _a.typeUrl, value = _a.value;
+            if (!typeUrl) {
+                throw new Error('Missing type_url in Any');
+            }
+            if (!value) {
+                throw new Error('Missing value in Any');
+            }
+            var decodedParams = _this.cosmJSRegistry.decode({ typeUrl: typeUrl, value: value });
+            return __assign({ typeUrl: typeUrl }, decodedParams);
+        });
+        return obj;
+    };
+    TxDecoder.prototype.getAuthInfoJson = function (authInfo) {
+        var _this = this;
+        var authInfoStringified = JSON.stringify(tx_1.AuthInfo.toJSON(authInfo));
+        var libParsedAuthInfo = JSON.parse(authInfoStringified);
+        var obj = __assign({}, libParsedAuthInfo);
+        if (authInfo.signerInfos) {
+            obj.signerInfos = authInfo.signerInfos.map(function (e) {
+                return typeof e !== typeof undefined ? _this.getSignerInfoJson(e) : undefined;
+            });
+        }
+        else {
+            obj.signerInfos = [];
+        }
+        return obj;
+    };
+    TxDecoder.prototype.getSignerInfoJson = function (signerInfo) {
+        var _a, _b, _c;
+        var stringifiedSignerInfo = JSON.stringify(tx_1.SignerInfo.toJSON(signerInfo));
+        var libParsedSignerInfo = JSON.parse(stringifiedSignerInfo);
+        var decodedPubkey = this.cosmJSRegistry.decode({
+            typeUrl: (_a = libParsedSignerInfo.publicKey) === null || _a === void 0 ? void 0 : _a.typeUrl,
+            value: encoding_1.fromBase64((_b = libParsedSignerInfo.publicKey) === null || _b === void 0 ? void 0 : _b.value),
+        });
+        var obj = __assign({}, libParsedSignerInfo);
+        obj.publicKey = { typeUrl: (_c = libParsedSignerInfo.publicKey) === null || _c === void 0 ? void 0 : _c.typeUrl, key: encoding_1.toBase64(decodedPubkey.key) };
+        return obj;
+    };
+    return TxDecoder;
+}());
+exports.TxDecoder = TxDecoder;
+//# sourceMappingURL=txDecoder.js.map

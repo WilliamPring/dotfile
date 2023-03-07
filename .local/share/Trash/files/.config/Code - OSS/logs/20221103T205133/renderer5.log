@@ -1,0 +1,20 @@
+[2022-11-03 22:48:11.259] [renderer5] [error] Error: Unable to move/copy '/home/will/repos/dotfile/.config/.local' because target '/home/will/repos/dotfile/.local' already exists at destination.
+    at u.doValidateMoveCopy (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:608:24894)
+    at async u.doCanMoveCopy (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:608:22335)
+    at async i.doMoveOrCopy (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2775:58538)
+    at async yc.perform (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:20013)
+    at async n.apply (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:25720)
+    at async v._performFileEdits (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:28213)
+    at async v.perform (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:27717)
+    at async m.apply (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:30210)
+    at async vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:1735:52061
+[2022-11-03 22:48:11.261] [renderer5] [error] Unable to move/copy '/home/will/repos/dotfile/.config/.local' because target '/home/will/repos/dotfile/.local' already exists at destination.: Error: Unable to move/copy '/home/will/repos/dotfile/.config/.local' because target '/home/will/repos/dotfile/.local' already exists at destination.
+    at u.doValidateMoveCopy (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:608:24894)
+    at async u.doCanMoveCopy (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:608:22335)
+    at async i.doMoveOrCopy (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2775:58538)
+    at async yc.perform (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:20013)
+    at async n.apply (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:25720)
+    at async v._performFileEdits (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:28213)
+    at async v.perform (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:27717)
+    at async m.apply (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:30210)
+    at async vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:1735:52061

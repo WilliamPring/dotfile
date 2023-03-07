@@ -1,0 +1,4 @@
+killall -u $USER 'scream'
+scream -i virbr0 -o pulse &
+
+notify-send "sCREAM:" "AUDIO RESET"

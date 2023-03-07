@@ -1,0 +1,13 @@
+cp ~/.config/i3/config .config/i3
+cp ~/.config/i3status/config .config/i3status/config
+cp ~/.config/ranger/rc.conf .config/ranger
+cp ~/.vimrc .
+cp ~/.Xresources .
+cp ~/.zshrc .
+cp ~/.tmux.conf .
+cp ~/.config/starship.toml .config/
+cp ~/.config/newsboat .config/newsboat
+cp ~/.config/rofi/conifg.rasi .config/rofi/conifg.rasi
+cp ~/.config/keyboard .config/keyboard
+cp ~/.config/antigenrc .config/antigenrc
+cp ~/.config/audio-mapper.carxp .config/audio-mapper.carxp 

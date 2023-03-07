@@ -1,0 +1,22 @@
+import { createAccountNotFound, createNotImplementedByWallet, schemaMessageSign, ServerError, } from "@ledgerhq/wallet-api-core";
+import { firstValueFrom } from "rxjs";
+export const sign = async (req, context, handlers) => {
+    const walletHandler = handlers["message.sign"];
+    if (!walletHandler) {
+        throw new ServerError(createNotImplementedByWallet("message.sign"));
+    }
+    const safeParams = schemaMessageSign.params.parse(req.params);
+    const accounts = await firstValueFrom(context.accounts$);
+    const { accountId, hexMessage } = safeParams;
+    const account = accounts.find((acc) => acc.id === accountId);
+    if (!account) {
+        throw new ServerError(createAccountNotFound(accountId));
+    }
+    const signedMessage = await walletHandler({
+        account,
+        message: Buffer.from(hexMessage, "hex"),
+    });
+    return {
+        hexSignedMessage: signedMessage.toString("hex"),
+    };
+};

@@ -1,0 +1,27 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useWalletAPIServer = void 0;
+const react_1 = require("react");
+const WalletAPIServer_1 = require("./WalletAPIServer");
+function useWalletAPIServer({ transport, config, logger, accounts, currencies, permission, }) {
+    const server = (0, react_1.useMemo)(() => {
+        return new WalletAPIServer_1.WalletAPIServer(transport, config, logger);
+    }, [config, logger, transport]);
+    (0, react_1.useEffect)(() => {
+        server.setPermissions(permission);
+    }, [permission, server]);
+    (0, react_1.useEffect)(() => {
+        server.setCurrencies(currencies);
+    }, [currencies, server]);
+    (0, react_1.useEffect)(() => {
+        server.setAccounts(accounts);
+    }, [accounts, server]);
+    const onMessage = (0, react_1.useCallback)((event) => {
+        transport.onMessage?.(event);
+    }, [transport]);
+    return {
+        server,
+        onMessage,
+    };
+}
+exports.useWalletAPIServer = useWalletAPIServer;

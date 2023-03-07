@@ -1,0 +1,37 @@
+import { createNotImplementedByWallet, schemaDeviceClose, schemaDeviceExchange, schemaDeviceTransport, ServerError, } from "@ledgerhq/wallet-api-core";
+const DEVICE_CLOSE = "device.close";
+export const close = async (req, _, handlers) => {
+    const safeParams = schemaDeviceClose.params.parse(req.params);
+    const walletHandler = handlers[DEVICE_CLOSE];
+    if (!walletHandler) {
+        throw new ServerError(createNotImplementedByWallet(DEVICE_CLOSE));
+    }
+    const transportId = await walletHandler(safeParams);
+    return {
+        transportId,
+    };
+};
+const DEVICE_EXCHANGE = "device.exchange";
+export const exchange = async (req, _, handlers) => {
+    const safeParams = schemaDeviceExchange.params.parse(req.params);
+    const walletHandler = handlers[DEVICE_EXCHANGE];
+    if (!walletHandler) {
+        throw new ServerError(createNotImplementedByWallet(DEVICE_EXCHANGE));
+    }
+    const responseHex = await walletHandler(safeParams);
+    return {
+        responseHex,
+    };
+};
+const DEVICE_TRANSPORT = "device.transport";
+export const transport = async (req, _, handlers) => {
+    const safeParams = schemaDeviceTransport.params.parse(req.params);
+    const walletHandler = handlers[DEVICE_TRANSPORT];
+    if (!walletHandler) {
+        throw new ServerError(createNotImplementedByWallet(DEVICE_TRANSPORT));
+    }
+    const transportId = await walletHandler(safeParams);
+    return {
+        transportId,
+    };
+};

@@ -1,0 +1,192 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.parsePoolParams = void 0;
+const errors_1 = require("../errors");
+const invalidDataReason_1 = require("../errors/invalidDataReason");
+const internal_1 = require("../types/internal");
+const internal_2 = require("../types/internal");
+const public_1 = require("../types/public");
+const parse_1 = require("../utils/parse");
+const serialize_1 = require("../utils/serialize");
+const constants_1 = require("./constants");
+function parseMargin(params) {
+    const POOL_MARGIN_DENOMINATOR_MAX_STR = "1 000 000 000 000 000 000".replace(/[ ]/, "");
+    const marginDenominator = parse_1.parseUint64_str(params.denominator, { max: POOL_MARGIN_DENOMINATOR_MAX_STR }, invalidDataReason_1.InvalidDataReason.POOL_REGISTRATION_INVALID_MARGIN_DENOMINATOR);
+    const marginNumerator = parse_1.parseUint64_str(params.numerator, { max: marginDenominator }, invalidDataReason_1.InvalidDataReason.POOL_REGISTRATION_INVALID_MARGIN);
+    return {
+        numerator: marginNumerator,
+        denominator: marginDenominator,
+    };
+}
+function parsePoolParams(params) {
+    const poolKey = parsePoolKey(params.poolKey);
+    const vrfHashHex = parse_1.parseHexStringOfLength(params.vrfKeyHashHex, internal_2.VRF_KEY_HASH_LENGTH, invalidDataReason_1.InvalidDataReason.POOL_REGISTRATION_INVALID_VRF_KEY_HASH);
+    const pledge = parse_1.parseUint64_str(params.pledge, { max: constants_1.MAX_LOVELACE_SUPPLY_STR }, invalidDataReason_1.InvalidDataReason.POOL_REGISTRATION_INVALID_PLEDGE);
+    const cost = parse_1.parseUint64_str(params.cost, { max: constants_1.MAX_LOVELACE_SUPPLY_STR }, invalidDataReason_1.InvalidDataReason.POOL_REGISTRATION_INVALID_COST);
+    const margin = parseMargin(params.margin);
+    const rewardAccount = parseRewardAccount(params.rewardAccount);
+    const owners = params.poolOwners.map(owner => parsePoolOwnerParams(owner));
+    const relays = params.relays.map(relay => parsePoolRelayParams(relay));
+    const metadata = params.metadata == null ? null : parsePoolMetadataParams(params.metadata);
+    parse_1.validate(owners.length <= constants_1.POOL_REGISTRATION_OWNERS_MAX, invalidDataReason_1.InvalidDataReason.POOL_REGISTRATION_OWNERS_TOO_MANY);
+    parse_1.validate(relays.length <= constants_1.POOL_REGISTRATION_RELAYS_MAX, invalidDataReason_1.InvalidDataReason.POOL_REGISTRATION_RELAYS_TOO_MANY);
+    return {
+        poolKey,
+        vrfHashHex,
+        pledge,
+        cost,
+        margin,
+        rewardAccount,
+        owners,
+        relays,
+        metadata,
+    };
+}
+exports.parsePoolParams = parsePoolParams;
+function parsePoolKey(poolKey) {
+    switch (poolKey.type) {
+        case public_1.PoolKeyType.DEVICE_OWNED: {
+            const params = poolKey.params;
+            const path = parse_1.parseBIP32Path(params.path, invalidDataReason_1.InvalidDataReason.POOL_KEY_INVALID_PATH);
+            return {
+                type: public_1.PoolKeyType.DEVICE_OWNED,
+                path,
+            };
+        }
+        case public_1.PoolKeyType.THIRD_PARTY: {
+            const params = poolKey.params;
+            const hashHex = parse_1.parseHexStringOfLength(params.keyHashHex, internal_2.KEY_HASH_LENGTH, invalidDataReason_1.InvalidDataReason.POOL_KEY_INVALID_KEY_HASH);
+            return {
+                type: public_1.PoolKeyType.THIRD_PARTY,
+                hashHex,
+            };
+        }
+        default:
+            throw new errors_1.InvalidData(invalidDataReason_1.InvalidDataReason.POOL_KEY_INVALID_TYPE);
+    }
+}
+function parsePoolOwnerParams(poolOwner) {
+    switch (poolOwner.type) {
+        case public_1.PoolOwnerType.DEVICE_OWNED: {
+            const params = poolOwner.params;
+            const path = parse_1.parseBIP32Path(params.stakingPath, invalidDataReason_1.InvalidDataReason.POOL_OWNER_INVALID_PATH);
+            return {
+                type: public_1.PoolOwnerType.DEVICE_OWNED,
+                path,
+            };
+        }
+        case public_1.PoolOwnerType.THIRD_PARTY: {
+            const params = poolOwner.params;
+            const hashHex = parse_1.parseHexStringOfLength(params.stakingKeyHashHex, internal_2.KEY_HASH_LENGTH, invalidDataReason_1.InvalidDataReason.POOL_OWNER_INVALID_KEY_HASH);
+            return {
+                type: public_1.PoolOwnerType.THIRD_PARTY,
+                hashHex,
+            };
+        }
+        default:
+            throw new errors_1.InvalidData(invalidDataReason_1.InvalidDataReason.POOL_OWNER_INVALID_TYPE);
+    }
+}
+function parseRewardAccount(poolRewardAccount) {
+    switch (poolRewardAccount.type) {
+        case public_1.PoolRewardAccountType.DEVICE_OWNED: {
+            const params = poolRewardAccount.params;
+            const path = parse_1.parseBIP32Path(params.path, invalidDataReason_1.InvalidDataReason.POOL_REWARD_ACCOUNT_INVALID_PATH);
+            return {
+                type: public_1.PoolRewardAccountType.DEVICE_OWNED,
+                path,
+            };
+        }
+        case public_1.PoolRewardAccountType.THIRD_PARTY: {
+            const params = poolRewardAccount.params;
+            const rewardAccountHex = parse_1.parseHexStringOfLength(params.rewardAccountHex, internal_2.REWARD_ACCOUNT_HEX_LENGTH, invalidDataReason_1.InvalidDataReason.POOL_REWARD_ACCOUNT_INVALID_HEX);
+            return {
+                type: public_1.PoolRewardAccountType.THIRD_PARTY,
+                rewardAccountHex,
+            };
+        }
+        default:
+            throw new errors_1.InvalidData(invalidDataReason_1.InvalidDataReason.POOL_REWARD_ACCOUNT_INVALID_TYPE);
+    }
+}
+function parsePort(portNumber, errMsg) {
+    parse_1.validate(parse_1.isUint16(portNumber), errMsg);
+    return portNumber;
+}
+function parseIPv4(ipv4, errMsg) {
+    parse_1.validate(parse_1.isString(ipv4), errMsg);
+    const ipParts = ipv4.split(".");
+    parse_1.validate(ipParts.length === 4, errMsg);
+    const ipBytes = Buffer.alloc(4);
+    for (let i = 0; i < 4; i++) {
+        const ipPart = parse_1.parseIntFromStr(ipParts[i], invalidDataReason_1.InvalidDataReason.RELAY_INVALID_IPV4);
+        parse_1.validate(parse_1.isUint8(ipPart), errMsg);
+        ipBytes.writeUInt8(ipPart, i);
+    }
+    return ipBytes;
+}
+function parseIPv6(ipv6, errMsg) {
+    parse_1.validate(parse_1.isString(ipv6), errMsg);
+    const ipHex = ipv6.split(":").join("");
+    parse_1.validate(parse_1.isHexStringOfLength(ipHex, 16), errMsg);
+    return serialize_1.hex_to_buf(ipHex);
+}
+function parseDnsName(dnsName, errMsg) {
+    parse_1.validate(parse_1.isString(dnsName), errMsg);
+    parse_1.validate(dnsName.length <= 64, errMsg);
+    parse_1.validate(dnsName.length > 0, errMsg);
+    parse_1.validate(/^[\x00-\x7F]*$/.test(dnsName), errMsg);
+    parse_1.validate(dnsName
+        .split("")
+        .every((c) => c.charCodeAt(0) >= 32 && c.charCodeAt(0) <= 126), errMsg);
+    return dnsName;
+}
+function parsePoolRelayParams(relayParams) {
+    switch (relayParams.type) {
+        case 0: {
+            const params = relayParams.params;
+            return {
+                type: 0,
+                port: ('portNumber' in params && params.portNumber != null)
+                    ? parsePort(params.portNumber, invalidDataReason_1.InvalidDataReason.RELAY_INVALID_PORT)
+                    : null,
+                ipv4: ('ipv4' in params && params.ipv4 != null)
+                    ? parseIPv4(params.ipv4, invalidDataReason_1.InvalidDataReason.RELAY_INVALID_IPV4)
+                    : null,
+                ipv6: ('ipv6' in params && params.ipv6 != null)
+                    ? parseIPv6(params.ipv6, invalidDataReason_1.InvalidDataReason.RELAY_INVALID_IPV6)
+                    : null,
+            };
+        }
+        case 1: {
+            const params = relayParams.params;
+            return {
+                type: 1,
+                port: ('portNumber' in params && params.portNumber != null)
+                    ? parsePort(params.portNumber, invalidDataReason_1.InvalidDataReason.RELAY_INVALID_PORT)
+                    : null,
+                dnsName: parseDnsName(params.dnsName, invalidDataReason_1.InvalidDataReason.RELAY_INVALID_DNS),
+            };
+        }
+        case 2: {
+            const params = relayParams.params;
+            return {
+                type: 2,
+                dnsName: parseDnsName(params.dnsName, invalidDataReason_1.InvalidDataReason.RELAY_INVALID_DNS),
+            };
+        }
+        default:
+            throw new errors_1.InvalidData(invalidDataReason_1.InvalidDataReason.RELAY_INVALID_TYPE);
+    }
+}
+function parsePoolMetadataParams(params) {
+    const url = parse_1.parseAscii(params.metadataUrl, invalidDataReason_1.InvalidDataReason.POOL_REGISTRATION_METADATA_INVALID_URL);
+    parse_1.validate(url.length <= 64, invalidDataReason_1.InvalidDataReason.POOL_REGISTRATION_METADATA_INVALID_URL);
+    const hashHex = parse_1.parseHexStringOfLength(params.metadataHashHex, internal_1.AUXILIARY_DATA_HASH_LENGTH, invalidDataReason_1.InvalidDataReason.POOL_REGISTRATION_METADATA_INVALID_HASH);
+    return {
+        url,
+        hashHex,
+        __brand: 'pool_metadata',
+    };
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicG9vbFJlZ2lzdHJhdGlvbi5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9wYXJzaW5nL3Bvb2xSZWdpc3RyYXRpb24udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsc0NBQXVDO0FBQ3ZDLG1FQUErRDtBQUUvRCxnREFBOEQ7QUFDOUQsZ0RBQThHO0FBWTlHLDRDQUl3QjtBQUN4QiwwQ0FBaUw7QUFDakwsa0RBQStDO0FBQy9DLDJDQUFpSDtBQUVqSCxTQUFTLFdBQVcsQ0FBQyxNQUF3QztJQUN6RCxNQUFNLCtCQUErQixHQUFHLDJCQUEyQixDQUFDLE9BQU8sQ0FBQyxLQUFLLEVBQUUsRUFBRSxDQUFDLENBQUE7SUFFdEYsTUFBTSxpQkFBaUIsR0FBRyx1QkFBZSxDQUNyQyxNQUFNLENBQUMsV0FBVyxFQUNsQixFQUFFLEdBQUcsRUFBRSwrQkFBK0IsRUFBRSxFQUN4QyxxQ0FBaUIsQ0FBQyw0Q0FBNEMsQ0FDakUsQ0FBQTtJQUVELE1BQU0sZUFBZSxHQUFHLHVCQUFlLENBQ25DLE1BQU0sQ0FBQyxTQUFTLEVBQ2hCLEVBQUUsR0FBRyxFQUFFLGlCQUFpQixFQUFFLEVBQzFCLHFDQUFpQixDQUFDLGdDQUFnQyxDQUNyRCxDQUFBO0lBRUQsT0FBTztRQUNILFNBQVMsRUFBRSxlQUE2QjtRQUN4QyxXQUFXLEVBQUUsaUJBQStCO0tBQy9DLENBQUE7QUFDTCxDQUFDO0FBRUQsU0FBZ0IsZUFBZSxDQUFDLE1BQThCO0lBQzFELE1BQU0sT0FBTyxHQUFHLFlBQVksQ0FBQyxNQUFNLENBQUMsT0FBTyxDQUFDLENBQUE7SUFDNUMsTUFBTSxVQUFVLEdBQUcsOEJBQXNCLENBQUMsTUFBTSxDQUFDLGFBQWEsRUFBRSw4QkFBbUIsRUFBRSxxQ0FBaUIsQ0FBQyxzQ0FBc0MsQ0FBQyxDQUFBO0lBQzlJLE1BQU0sTUFBTSxHQUFHLHVCQUFlLENBQUMsTUFBTSxDQUFDLE1BQU0sRUFBRSxFQUFFLEdBQUcsRUFBRSxtQ0FBdUIsRUFB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

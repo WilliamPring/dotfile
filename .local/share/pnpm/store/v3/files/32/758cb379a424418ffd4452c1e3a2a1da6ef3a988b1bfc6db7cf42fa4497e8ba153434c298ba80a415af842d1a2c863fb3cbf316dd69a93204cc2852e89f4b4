@@ -1,0 +1,27 @@
+import Long from 'long';
+import { google } from '../../../../cosmos/v1beta1/codec';
+export declare const softwareUpgradeProposal: () => {
+    new (options: SoftwareUpgradeProposalOptions): {
+        title: string;
+        description: string;
+        plan?: IPlan | undefined;
+        getEncoded(): google.protobuf.Any;
+    };
+};
+export declare type IPlan = {
+    name: string;
+    time?: ITimestamp;
+    height: Long;
+    info: string;
+    upgradedClientState?: google.protobuf.IAny;
+};
+export declare type ITimestamp = {
+    seconds?: Long;
+    nanos?: number;
+};
+export declare type SoftwareUpgradeProposalOptions = {
+    title: string;
+    description: string;
+    plan?: IPlan;
+};
+//# sourceMappingURL=SoftwareUpgradeProposal.d.ts.map

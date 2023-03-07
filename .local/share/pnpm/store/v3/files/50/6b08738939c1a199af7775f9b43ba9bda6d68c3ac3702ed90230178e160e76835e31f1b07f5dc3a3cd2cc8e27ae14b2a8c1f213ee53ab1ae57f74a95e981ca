@@ -1,0 +1,36 @@
+"use strict";
+
+var _2 = require("..");
+
+test("premature framesToData should throw", () => {
+  expect(() => (0, _2.framesToData)()).toThrow();
+  expect(() => (0, _2.framesToData)(null)).toThrow();
+  const data = Buffer.from(Array(1000).fill(null).map((_, i) => i % 256));
+  const framesExport = (0, _2.dataToFrames)(data, 200);
+  expect(framesExport.length).toBeGreaterThan(2);
+  const framesImport = (0, _2.parseFramesReducer)((0, _2.parseFramesReducer)(null, framesExport[0]), framesExport[1]);
+  expect((0, _2.areFramesComplete)(framesImport)).toBe(false);
+  expect((0, _2.currentNumberOfFrames)(framesImport)).toBeLessThan((0, _2.totalNumberOfFrames)(framesImport));
+  expect(() => (0, _2.framesToData)(framesImport)).toThrow();
+});
+test("corrupted data through framesToData should throw", () => {
+  const data = Buffer.from(Array(1000).fill(null).map((_, i) => i % 256));
+  const framesExport = (0, _2.dataToFrames)(data, 200);
+  const framesImport = framesExport.reduce(_2.parseFramesReducer, null);
+  framesImport.frames[1].data[10]++; // corrupt one bit of the second frame
+
+  expect(() => (0, _2.framesToData)(framesImport)).toThrow();
+});
+test("corrupted data can be recoverable", () => {
+  const data = Buffer.from(Array(1000).fill(null).map((_, i) => i % 256));
+  const framesExport = (0, _2.dataToFrames)(data, 200);
+  const framesImport = framesExport.reduce(_2.parseFramesReducer, null);
+  framesImport.frames[1].data[10]++; // corrupt one bit of the second frame
+
+  expect(() => (0, _2.framesToData)(framesImport)).toThrow();
+  const framesImport2 = framesExport.reduce(_2.parseFramesReducer, framesImport);
+  expect((0, _2.framesToData)(framesImport2)).toMatchObject(data);
+});
+test("extra frames added to data should throw", () => {
+  expect(() => (0, _2.framesToData)((0, _2.dataToFrames)(Buffer.from(Array(1000).fill(null).map((_, i) => i % 256)), 200).reduce(_2.parseFramesReducer, null).concat((0, _2.dataToFrames)(Buffer.from("foo"), 100)))).toThrow();
+});

@@ -1,0 +1,59 @@
+setopt autocd
+
+
+export PATH=$PATH:$HOME/.locale/bin
+
+. "$HOME/.antigen/init.zsh"
+antigen init "$HOME/.config/antigenrc"
+
+bindkey '^P' autosuggest-accept
+
+# history and browsing history config
+# https://zsh.sourceforge.io/Doc/Release/Options.html#History
+# https://github.com/ohmyzsh/ohmyzsh/issues/1720#issuecomment-286366959
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt INC_APPEND_HISTORY
+# Aliases
+alias ls='ls --color=always'
+alias ll='ls -lath --color=auto'
+alias grep='grep --color=auto'
+alias adog='git log --all --decorate --oneline --graph'
+alias ta='tmux a -t'
+alias tn='tmux new -s'
+alias tl='tmux list-sessions'
+alias reload-shell='source ~/.zshrc'
+alias pc='sudo protonvpn c'
+alias pd='sudo protonvpn d'
+alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias xl='xrdb -load ~/.Xresources'
+alias dc='docker'
+alias nb='newsboat'
+alias v="vim"
+alias gv="gvim"
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
+export DEFAULT_USER="$(whoami)"
+powerline-daemon -q
+. /usr/share/powerline/bindings/zsh/powerline.zsh
+eval "$(starship init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+  exec startx
+fi

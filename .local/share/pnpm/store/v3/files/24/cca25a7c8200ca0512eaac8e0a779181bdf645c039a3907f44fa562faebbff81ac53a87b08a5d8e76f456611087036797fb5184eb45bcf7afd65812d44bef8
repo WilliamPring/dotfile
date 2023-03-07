@@ -1,0 +1,5 @@
+import { RawTronTransaction, TronTransaction } from "./types";
+export declare const rawTx: RawTronTransaction;
+export declare const rawTxFull: Required<RawTronTransaction>;
+export declare const tx: TronTransaction;
+export declare const txFull: Required<TronTransaction>;

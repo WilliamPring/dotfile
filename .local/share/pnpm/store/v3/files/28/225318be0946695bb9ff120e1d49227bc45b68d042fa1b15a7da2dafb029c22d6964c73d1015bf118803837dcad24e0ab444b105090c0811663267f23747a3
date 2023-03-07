@@ -1,0 +1,26 @@
+import { z } from "zod";
+declare const schemaWalletUserIdParams: z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>;
+declare const schemaWalletUserIdResults: z.ZodObject<{
+    userId: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    userId: string;
+}, {
+    userId: string;
+}>;
+export declare const schemaWalletUserId: {
+    params: z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>;
+    result: z.ZodObject<{
+        userId: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        userId: string;
+    }, {
+        userId: string;
+    }>;
+};
+export declare type WalletUserId = {
+    params: z.infer<typeof schemaWalletUserIdParams>;
+    result: z.infer<typeof schemaWalletUserIdResults>;
+};
+export declare type WalletUserIdHandler = (params: WalletUserId["params"]) => WalletUserId["result"];
+export {};
+//# sourceMappingURL=WalletUserId.d.ts.map

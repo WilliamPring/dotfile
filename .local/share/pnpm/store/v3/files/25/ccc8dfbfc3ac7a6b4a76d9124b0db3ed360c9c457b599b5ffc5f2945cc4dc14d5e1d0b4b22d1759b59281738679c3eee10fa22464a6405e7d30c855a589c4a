@@ -1,0 +1,5 @@
+import { RawRippleTransaction, RippleTransaction } from "./types";
+export declare const rawTx: RawRippleTransaction;
+export declare const rawTxFull: Required<RawRippleTransaction>;
+export declare const tx: RippleTransaction;
+export declare const txFull: Required<RippleTransaction>;

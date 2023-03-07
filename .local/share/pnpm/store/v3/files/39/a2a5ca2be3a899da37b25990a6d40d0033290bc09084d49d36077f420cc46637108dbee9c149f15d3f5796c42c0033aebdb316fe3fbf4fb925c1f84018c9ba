@@ -1,0 +1,22 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+/* istanbul ignore file */
+class Logger {
+    constructor(namespace) {
+        this.prefix = "";
+        this.prefix = namespace ? `[${namespace}] ` : "";
+    }
+    log(message, ...args) {
+        console.log(`%c${this.prefix}${message}`, "background: #6490f1; color: #fff", ...args);
+    }
+    warn(message, ...args) {
+        console.warn(`%c${this.prefix}${message}`, "background: #6490f1; color: #f80", ...args);
+    }
+    debug(message, ...args) {
+        console.debug(`%c${this.prefix}${message}`, "background: #6490f1; color: #777", ...args);
+    }
+    error(message, ...args) {
+        console.error(`%c${this.prefix}${message}`, "background: #6490f1; color: #f00", ...args);
+    }
+}
+exports.default = Logger;

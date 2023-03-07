@@ -1,0 +1,462 @@
+export declare type bigint_like = number | bigint | string;
+export declare enum AddressType {
+    BASE_PAYMENT_KEY_STAKE_KEY = 0,
+    BASE_PAYMENT_SCRIPT_STAKE_KEY = 1,
+    BASE_PAYMENT_KEY_STAKE_SCRIPT = 2,
+    BASE_PAYMENT_SCRIPT_STAKE_SCRIPT = 3,
+    POINTER_KEY = 4,
+    POINTER_SCRIPT = 5,
+    ENTERPRISE_KEY = 6,
+    ENTERPRISE_SCRIPT = 7,
+    BYRON = 8,
+    REWARD_KEY = 14,
+    REWARD_SCRIPT = 15
+}
+export declare enum CertificateType {
+    STAKE_REGISTRATION = 0,
+    STAKE_DEREGISTRATION = 1,
+    STAKE_DELEGATION = 2,
+    STAKE_POOL_REGISTRATION = 3,
+    STAKE_POOL_RETIREMENT = 4
+}
+export declare const enum RelayType {
+    SINGLE_HOST_IP_ADDR = 0,
+    SINGLE_HOST_HOSTNAME = 1,
+    MULTI_HOST = 2
+}
+export declare const HARDENED = 2147483648;
+export declare type BIP32Path = Array<number>;
+export declare type Network = {
+    protocolMagic: number;
+    networkId: number;
+};
+export declare type DeviceOwnedAddress = {
+    type: AddressType.BYRON;
+    params: AddressParamsByron;
+} | {
+    type: AddressType.BASE_PAYMENT_KEY_STAKE_KEY | AddressType.BASE_PAYMENT_SCRIPT_STAKE_KEY | AddressType.BASE_PAYMENT_KEY_STAKE_SCRIPT | AddressType.BASE_PAYMENT_SCRIPT_STAKE_SCRIPT;
+    params: AddressParamsBase;
+} | {
+    type: AddressType.ENTERPRISE_KEY | AddressType.ENTERPRISE_SCRIPT;
+    params: AddressParamsEnterprise;
+} | {
+    type: AddressType.POINTER_KEY | AddressType.POINTER_SCRIPT;
+    params: AddressParamsPointer;
+} | {
+    type: AddressType.REWARD_KEY | AddressType.REWARD_SCRIPT;
+    params: AddressParamsReward;
+};
+export declare type AddressParamsByron = {
+    spendingPath: BIP32Path;
+};
+export declare type SpendingParams = {
+    spendingPath: BIP32Path;
+} | {
+    spendingScriptHashHex: string;
+};
+export declare type AddressParamsBase = SpendingParams & ({
+    stakingPath: BIP32Path;
+} | {
+    stakingKeyHashHex: string;
+} | {
+    stakingScriptHashHex: string;
+});
+export declare type AddressParamsEnterprise = SpendingParams;
+export declare type AddressParamsPointer = SpendingParams & {
+    stakingBlockchainPointer: BlockchainPointer;
+};
+export declare type AddressParamsReward = {
+    stakingPath: BIP32Path;
+} | {
+    stakingScriptHashHex: string;
+};
+export declare type OperationalCertificate = {
+    kesPublicKeyHex: string;
+    kesPeriod: bigint_like;
+    issueCounter: bigint_like;
+    coldKeyPath: BIP32Path;
+};
+export declare type TxInput = {
+    txHashHex: string;
+    outputIndex: number;
+    path: BIP32Path | null;
+};
+export declare type Token = {
+    assetNameHex: string;
+    amount: bigint_like;
+};
+export declare type AssetGroup = {
+    policyIdHex: string;
+    tokens: Array<Token>;
+};
+export declare enum DatumType {
+    HASH = 0,
+    INLINE = 1
+}
+export declare type Datum = {
+    type: DatumType.HASH;
+    datumHashHex: string;
+} | {
+    type: DatumType.INLINE;
+    datumHex: string;
+};
+export declare enum TxOutputFormat {
+    ARRAY_LEGACY = 0,
+    MAP_BABBAGE = 1
+}
+export declare type TxOutputAlonzo = {
+    format?: TxOutputFormat.ARRAY_LEGACY;
+    destination: TxOutputDestination;
+    amount: bigint_like;
+    tokenBundle?: Array<AssetGroup> | null;
+    datumHashHex?: string | null;
+};
+export declare type TxOutputBabbage = {
+    format: TxOutputFormat.MAP_BABBAGE;
+    destination: TxOutputDestination;
+    amount: bigint_like;
+    tokenBundle?: Array<AssetGroup> | null;
+    datum?: Datum | null;
+    referenceScriptHex?: string | null;
+};
+export declare type TxOutput = TxOutputAlonzo | TxOutputBabbage;
+export declare enum TxOutputDestinationType {
+    THIRD_PARTY = "third_party",
+    DEVICE_OWNED = "device_owned"
+}
+export declare type ThirdPartyAddressParams = {
+    addressHex: string;
+};
+export declare type TxOutputDestination = {
+    type: TxOutputDestinationType.THIRD_PARTY;
+    params: ThirdPartyAddressParams;
+} | {
+    type: TxOutputDestinationType.DEVICE_OWNED;
+    params: DeviceOwnedAddress;
+};
+export declare type BlockchainPointer = {
+    blockIndex: number;
+    txIndex: number;
+    certificateIndex: number;
+};
+export declare enum PoolKeyType {
+    THIRD_PARTY = "third_party",
+    DEVICE_OWNED = "device_owned"
+}
+export declare type PoolKey = {
+    type: PoolKeyType.THIRD_PARTY;
+    params: PoolKeyThirdPartyParams;
+} | {
+    type: PoolKeyType.DEVICE_OWNED;
+    params: PoolKeyDeviceOwnedParams;
+};
+export declare type PoolKeyThirdPartyParams = {
+    keyHashHex: string;
+};
+export declare type PoolKeyDeviceOwnedParams = {
+    path: BIP32Path;
+};
+export declare enum PoolOwnerType {
+    THIRD_PARTY = "third_party",
+    DEVICE_OWNED = "device_owned"
+}
+export declare type PoolOwner = {
+    type: PoolOwnerType.THIRD_PARTY;
+    params: PoolOwnerThirdPartyParams;
+} | {
+    type: PoolOwnerType.DEVICE_OWNED;
+    params: PoolOwnerDeviceOwnedParams;
+};
+export declare type PoolOwnerThirdPartyParams = {
+    stakingKeyHashHex: string;
+};
+export declare type PoolOwnerDeviceOwnedParams = {
+    stakingPath: BIP32Path;
+};
+export declare enum PoolRewardAccountType {
+    THIRD_PARTY = "third_party",
+    DEVICE_OWNED = "device_owned"
+}
+export declare type PoolRewardAccount = {
+    type: PoolRewardAccountType.THIRD_PARTY;
+    params: PoolRewardAccountThirdPartyParams;
+} | {
+    type: PoolRewardAccountType.DEVICE_OWNED;
+    params: PoolRewardAccountDeviceOwnedParams;
+};
+export declare type PoolRewardAccountThirdPartyParams = {
+    rewardAccountHex: string;
+};
+export declare type PoolRewardAccountDeviceOwnedParams = {
+    path: BIP32Path;
+};
+export declare type SingleHostIpAddrRelayParams = {
+    portNumber?: number | null;
+    ipv4?: string | null;
+    ipv6?: string | null;
+};
+export declare type SingleHostHostnameRelayParams = {
+    portNumber?: number | null;
+    dnsName: string;
+};
+export declare type MultiHostRelayParams = {
+    dnsName: string;
+};
+export declare type Relay = {
+    type: RelayType.SINGLE_HOST_IP_ADDR;
+    params: SingleHostIpAddrRelayParams;
+} | {
+    type: RelayType.SINGLE_HOST_HOSTNAME;
+    params: SingleHostHostnameRelayParams;
+} | {
+    type: RelayType.MULTI_HOST;
+    params: MultiHostRelayParams;
+};
+export declare type PoolMetadataParams = {
+    metadataUrl: string;
+    metadataHashHex: string;
+};
+export declare type Margin = {
+    numerator: bigint_like;
+    denominator: bigint_like;
+};
+export declare type PoolRegistrationParams = {
+    poolKey: PoolKey;
+    vrfKeyHashHex: string;
+    pledge: bigint_like;
+    cost: bigint_like;
+    margin: Margin;
+    rewardAccount: PoolRewardAccount;
+    poolOwners: Array<PoolOwner>;
+    relays: Array<Relay>;
+    metadata?: PoolMetadataParams | null;
+};
+export declare type PoolRetirementParams = {
+    poolKeyPath: BIP32Path;
+    retirementEpoch: bigint_like;
+};
+export declare enum StakeCredentialParamsType {
+    KEY_PATH = 0,
+    KEY_HASH = 1,
+    SCRIPT_HASH = 2
+}
+export declare type KeyPathStakeCredentialParams = {
+    type: StakeCredentialParamsType.KEY_PATH;
+    keyPath: BIP32Path;
+};
+export declare type KeyHashStakeCredentialParams = {
+    type: StakeCredentialParamsType.KEY_HASH;
+    keyHashHex: string;
+};
+export declare type ScriptStakeCredentialParams = {
+    type: StakeCredentialParamsType.SCRIPT_HASH;
+    scriptHashHex: string;
+};
+export declare type StakeCredentialParams = KeyPathStakeCredentialParams | KeyHashStakeCredentialParams | ScriptStakeCredentialParams;
+export declare type StakeRegistrationParams = {
+    stakeCredential: StakeCredentialParams;
+};
+export declare type StakeDeregistrationParams = {
+    stakeCredential: StakeCredentialParams;
+};
+export declare type StakeDelegationParams = {
+    stakeCredential: StakeCredentialParams;
+    poolKeyHashHex: string;
+};
+export declare type Certificate = {
+    type: CertificateType.STAKE_REGISTRATION;
+    params: StakeRegistrationParams;
+} | {
+    type: CertificateType.STAKE_DEREGISTRATION;
+    params: StakeDeregistrationParams;
+} | {
+    type: CertificateType.STAKE_DELEGATION;
+    params: StakeDelegationParams;
+} | {
+    type: CertificateType.STAKE_POOL_REGISTRATION;
+    params: PoolRegistrationParams;
+} | {
+    type: CertificateType.STAKE_POOL_RETIREMENT;
+    params: PoolRetirementParams;
+};
+export declare type Withdrawal = {
+    stakeCredential: StakeCredentialParams;
+    amount: bigint_like;
+};
+export declare type Flags = {
+    isDebug: boolean;
+};
+export declare type Version = {
+    major: number;
+    minor: number;
+    patch: number;
+    flags: Flags;
+};
+export declare type DeviceCompatibility = {
+    isCompatible: boolean;
+    recommendedVersion: string | null;
+    supportsMary: boolean;
+    supportsCatalystRegistration: boolean;
+    supportsZeroTtl: boolean;
+    supportsPoolRegistrationAsOperator: boolean;
+    supportsPoolRetirement: boolean;
+    supportsNativeScriptHashDerivation: boolean;
+    supportsMultisigTransaction: boolean;
+    supportsMint: boolean;
+    supportsAlonzo: boolean;
+    supportsReqSignersInOrdinaryTx: boolean;
+    supportsBabbage: boolean;
+};
+export declare type Serial = {
+    serialHex: string;
+};
+export declare type DerivedAddress = {
+    addressHex: string;
+};
+export declare type ExtendedPublicKey = {
+    publicKeyHex: string;
+    chainCodeHex: string;
+};
+export declare type OperationalCertificateSignature = {
+    signatureHex: string;
+};
+export declare type Witness = {
+    path: BIP32Path;
+    witnessSignatureHex: string;
+};
+export declare enum TxAuxiliaryDataSupplementType {
+    CATALYST_REGISTRATION = "catalyst_registration"
+}
+export declare type TxAuxiliaryDataSupplement = {
+    type: TxAuxiliaryDataSupplementType.CATALYST_REGISTRATION;
+    auxiliaryDataHashHex: string;
+    catalystRegistrationSignatureHex: string;
+};
+export declare type SignedTransactionData = {
+    txHashHex: string;
+    witnesses: Array<Witness>;
+    auxiliaryDataSupplement: TxAuxiliaryDataSupplement | null;
+};
+export declare enum TxAuxiliaryDataType {
+    ARBITRARY_HASH = "arbitrary_hash",
+    CATALYST_REGISTRATION = "catalyst_registration"
+}
+export declare type TxAuxiliaryData = {
+    type: TxAuxiliaryDataType.ARBITRARY_HASH;
+    params: TxAuxiliaryDataArbitraryHashParams;
+} | {
+    type: TxAuxiliaryDataType.CATALYST_REGISTRATION;
+    params: CatalystRegistrationParams;
+};
+export declare type TxAuxiliaryDataArbitraryHashParams = {
+    hashHex: string;
+};
+export declare type CatalystRegistrationParams = {
+    votingPublicKeyHex: string;
+    stakingPath: BIP32Path;
+    rewardsDestination: DeviceOwnedAddress;
+    nonce: bigint_like;
+};
+export declare enum TxRequiredSignerType {
+    PATH = "required_signer_path",
+    HASH = "required_signer_hash"
+}
+export declare type RequiredSigner = {
+    type: TxRequiredSignerType.PATH;
+    path: BIP32Path;
+} | {
+    type: TxRequiredSignerType.HASH;
+    hashHex: string;
+};
+export declare type Transaction = {
+    network: Network;
+    inputs: Array<TxInput>;
+    outputs: Array<TxOutput>;
+    fee: bigint_like;
+    ttl?: bigint_like | null;
+    certificates?: Array<Certificate> | null;
+    withdrawals?: Array<Withdrawal> | null;
+    auxiliaryData?: TxAuxiliaryData | null;
+    validityIntervalStart?: bigint_like | null;
+    mint?: Array<AssetGroup> | null;
+    scriptDataHashHex?: string | null;
+    collateralInputs?: Array<TxInput> | null;
+    requiredSigners?: Array<RequiredSigner> | null;
+    includeNetworkId?: boolean | null;
+    collateralOutput?: TxOutput | null;
+    totalCollateral?: bigint_like | null;
+    referenceInputs?: Array<TxInput> | null;
+};
+export declare enum TransactionSigningMode {
+    ORDINARY_TRANSACTION = "ordinary_transaction",
+    MULTISIG_TRANSACTION = "multisig_transaction",
+    POOL_REGISTRATION_AS_OWNER = "pool_registration_as_owner",
+    POOL_REGISTRATION_AS_OPERATOR = "pool_registration_as_operator",
+    PLUTUS_TRANSACTION = "plutus_transaction"
+}
+export declare type SignTransactionRequest = {
+    signingMode: TransactionSigningMode;
+    tx: Transaction;
+    additionalWitnessPaths?: BIP32Path[];
+};
+export declare enum NativeScriptType {
+    PUBKEY_DEVICE_OWNED = "pubkey_device_owned",
+    PUBKEY_THIRD_PARTY = "pubkey_third_party",
+    ALL = "all",
+    ANY = "any",
+    N_OF_K = "n_of_k",
+    INVALID_BEFORE = "invalid_before",
+    INVALID_HEREAFTER = "invalid_hereafter"
+}
+export declare type NativeScript = {
+    type: NativeScriptType.PUBKEY_DEVICE_OWNED;
+    params: NativeScriptParamsDeviceOwnedPubkey;
+} | {
+    type: NativeScriptType.PUBKEY_THIRD_PARTY;
+    params: NativeScriptParamsThirdPartyPubkey;
+} | {
+    type: NativeScriptType.ALL;
+    params: NativeScriptParamsAll;
+} | {
+    type: NativeScriptType.ANY;
+    params: NativeScriptParamsAny;
+} | {
+    type: NativeScriptType.N_OF_K;
+    params: NativeScriptParamsNofK;
+} | {
+    type: NativeScriptType.INVALID_BEFORE;
+    params: NativeScriptParamsInvalidBefore;
+} | {
+    type: NativeScriptType.INVALID_HEREAFTER;
+    params: NativeScriptParamsInvalidHereafter;
+};
+export declare type NativeScriptParamsDeviceOwnedPubkey = {
+    path: BIP32Path;
+};
+export declare type NativeScriptParamsThirdPartyPubkey = {
+    keyHashHex: string;
+};
+export declare type NativeScriptParamsAll = {
+    scripts: NativeScript[];
+};
+export declare type NativeScriptParamsAny = {
+    scripts: NativeScript[];
+};
+export declare type NativeScriptParamsNofK = {
+    requiredCount: bigint_like;
+    scripts: NativeScript[];
+};
+export declare type NativeScriptParamsInvalidBefore = {
+    slot: bigint_like;
+};
+export declare type NativeScriptParamsInvalidHereafter = {
+    slot: bigint_like;
+};
+export declare type NativeScriptHash = {
+    scriptHashHex: string;
+};
+export declare enum NativeScriptHashDisplayFormat {
+    BECH32 = "bech32",
+    POLICY_ID = "policyId"
+}
+//# sourceMappingURL=public.d.ts.map

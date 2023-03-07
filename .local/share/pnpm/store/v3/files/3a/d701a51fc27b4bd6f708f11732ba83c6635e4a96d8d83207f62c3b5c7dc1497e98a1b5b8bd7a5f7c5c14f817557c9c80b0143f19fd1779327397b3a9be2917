@@ -1,0 +1,19 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deriveAddress = void 0;
+const addressParams_1 = require("./serialization/addressParams");
+const send = (params) => (Object.assign({ ins: 17 }, params));
+function* deriveAddress(version, addressParams) {
+    const P1_RETURN = 0x01;
+    const P2_UNUSED = 0x00;
+    const response = yield send({
+        p1: P1_RETURN,
+        p2: P2_UNUSED,
+        data: addressParams_1.serializeAddressParams(addressParams, version),
+    });
+    return {
+        addressHex: response.toString("hex"),
+    };
+}
+exports.deriveAddress = deriveAddress;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGVyaXZlQWRkcmVzcy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9pbnRlcmFjdGlvbnMvZGVyaXZlQWRkcmVzcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFJQSxpRUFBc0U7QUFFdEUsTUFBTSxJQUFJLEdBQUcsQ0FBQyxNQUtiLEVBQWMsRUFBRSxDQUFDLGlCQUFHLEdBQUcsUUFBeUIsTUFBTSxFQUFHLENBQUE7QUFFMUQsUUFBZSxDQUFDLENBQUMsYUFBYSxDQUMxQixPQUFnQixFQUNoQixhQUFrQztJQUVsQyxNQUFNLFNBQVMsR0FBRyxJQUFJLENBQUE7SUFDdEIsTUFBTSxTQUFTLEdBQUcsSUFBSSxDQUFBO0lBRXRCLE1BQU0sUUFBUSxHQUFHLE1BQU0sSUFBSSxDQUFDO1FBQ3hCLEVBQUUsRUFBRSxTQUFTO1FBQ2IsRUFBRSxFQUFFLFNBQVM7UUFDYixJQUFJLEVBQUUsc0NBQXNCLENBQUMsYUFBYSxFQUFFLE9BQU8sQ0FBQztLQUN2RCxDQUFDLENBQUE7SUFFRixPQUFPO1FBQ0gsVUFBVSxFQUFFLFFBQVEsQ0FBQyxRQUFRLENBQUMsS0FBSyxDQUFDO0tBQ3ZDLENBQUE7QUFDTCxDQUFDO0FBaEJELHNDQWdCQyJ9

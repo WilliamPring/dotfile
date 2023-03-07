@@ -1,0 +1,4 @@
+import type { ParsedOperationalCertificate } from "../types/internal";
+import type { OperationalCertificate } from "../types/public";
+export declare function parseOperationalCertificate(operationalCertificate: OperationalCertificate): ParsedOperationalCertificate;
+//# sourceMappingURL=operationalCertificate.d.ts.map

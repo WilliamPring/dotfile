@@ -1,0 +1,7 @@
+/// <reference types="node" />
+import type { ParsedComplexNativeScript, ParsedSimpleNativeScript } from "../../types/internal";
+import { NativeScriptHashDisplayFormat } from "../../types/internal";
+export declare function serializeComplexNativeScriptStart(script: ParsedComplexNativeScript): Buffer;
+export declare function serializeSimpleNativeScript(script: ParsedSimpleNativeScript): Buffer;
+export declare function serializeWholeNativeScriptFinish(displayFormat: NativeScriptHashDisplayFormat): Buffer;
+//# sourceMappingURL=nativeScript.d.ts.map

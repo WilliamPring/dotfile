@@ -1,0 +1,3 @@
+#!/bin/bash
+killall -u $USER 'scream'
+scream -o pulse -i br0 &

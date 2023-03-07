@@ -1,0 +1,44 @@
+import { createAccountNotFound, createNotImplementedByWallet, deserializeTransaction, schemaTransactionSign, schemaTransactionSignAndBroadcast, ServerError, } from "@ledgerhq/wallet-api-core";
+import { firstValueFrom } from "rxjs";
+export const sign = async (req, context, handlers) => {
+    const safeParams = schemaTransactionSign.params.parse(req.params);
+    const accounts = await firstValueFrom(context.accounts$);
+    const { accountId, rawTransaction, options } = safeParams;
+    const account = accounts.find((acc) => acc.id === accountId);
+    if (!account) {
+        throw new ServerError(createAccountNotFound(accountId));
+    }
+    const walletHandler = handlers["transaction.sign"];
+    if (!walletHandler) {
+        throw new ServerError(createNotImplementedByWallet("transaction.sign"));
+    }
+    const signedTransaction = await walletHandler({
+        account,
+        transaction: deserializeTransaction(rawTransaction),
+        options,
+    });
+    return {
+        signedTransactionHex: signedTransaction.toString("hex"),
+    };
+};
+export const signAndBroadcast = async (req, context, handlers) => {
+    const walletHandler = handlers["transaction.signAndBroadcast"];
+    if (!walletHandler) {
+        throw new ServerError(createNotImplementedByWallet("transaction.signAndBroadcast"));
+    }
+    const safeParams = schemaTransactionSignAndBroadcast.params.parse(req.params);
+    const accounts = await firstValueFrom(context.accounts$);
+    const { accountId, rawTransaction, options } = safeParams;
+    const account = accounts.find((acc) => acc.id === accountId);
+    if (!account) {
+        throw new ServerError(createAccountNotFound(accountId));
+    }
+    const transactionHash = await walletHandler({
+        account,
+        transaction: deserializeTransaction(rawTransaction),
+        options,
+    });
+    return {
+        transactionHash,
+    };
+};

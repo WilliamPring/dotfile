@@ -1,0 +1,27 @@
+import { Msg } from '../../../cosmos/v1beta1/types/msg';
+import { InitConfigurations } from '../../../core/cro';
+import * as legacyAmino from '../../../cosmos/amino';
+export declare const msgMintNFT: (config: InitConfigurations) => {
+    new (options: MsgMintNFTOptions): {
+        id: string;
+        denomId: string;
+        name: string;
+        uri: string;
+        data: string;
+        sender: string;
+        recipient: string;
+        toRawMsg(): Msg;
+        toRawAminoMsg(): legacyAmino.Msg;
+        validateAddresses(): void;
+    };
+};
+export declare type MsgMintNFTOptions = {
+    id: string;
+    denomId: string;
+    name: string;
+    uri: string;
+    data: string;
+    sender: string;
+    recipient: string;
+};
+//# sourceMappingURL=MsgMintNFT.d.ts.map

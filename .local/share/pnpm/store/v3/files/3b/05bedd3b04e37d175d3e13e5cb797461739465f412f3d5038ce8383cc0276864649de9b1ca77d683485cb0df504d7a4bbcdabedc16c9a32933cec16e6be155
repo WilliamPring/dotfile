@@ -1,0 +1,2 @@
+declare const generateRandomTxID: (length: number) => string;
+export default generateRandomTxID;

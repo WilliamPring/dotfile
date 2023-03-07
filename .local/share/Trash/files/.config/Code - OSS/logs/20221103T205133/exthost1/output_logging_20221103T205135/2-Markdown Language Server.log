@@ -1,0 +1,712 @@
+[Trace 00:58:33.583] VsCodeClientWorkspace: TextDocument.onDidOpen: file:///home/will/.local/share/snippets/bookmarks
+[Trace 00:58:33.583] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 00:58:33.584] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 00:58:33.585] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 00:58:33.596] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 98
+[Debug 00:58:33.596] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Debug 00:58:33.637] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 00:58:33.736] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 00:58:33.736] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 00:58:33.774] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 00:58:33.928] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 99
+[Debug 00:58:33.979] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 00:58:34.079] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 99
+[Trace 00:58:36.134] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 00:58:36.134] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 00:58:36.328] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 100
+[Debug 00:58:36.328] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 00:58:36.378] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 00:58:36.478] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 100
+[Trace 01:00:00.622] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 01:57:32.389] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 01:57:32.389] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 01:57:32.590] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:11.701] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:11.701] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 101
+[Debug 02:02:11.701] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:11.701] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 101
+[Debug 02:02:11.702] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:11.870] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 101
+[Trace 02:02:21.899] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:21.899] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:22.092] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 102
+[Debug 02:02:22.092] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:22.145] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:22.242] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 102
+[Trace 02:02:31.953] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:31.953] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:32.142] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 103
+[Debug 02:02:32.142] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:32.192] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:32.292] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 103
+[Trace 02:02:34.112] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:34.112] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:34.306] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 104
+[Debug 02:02:34.306] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:34.357] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:34.457] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 104
+[Trace 02:02:34.865] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:34.865] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:35.060] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 105
+[Debug 02:02:35.060] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:35.111] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:35.210] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 105
+[Trace 02:02:35.550] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:35.551] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:35.746] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 106
+[Debug 02:02:35.746] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:35.796] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:35.896] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 106
+[Trace 02:02:38.047] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:38.047] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:38.243] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 107
+[Debug 02:02:38.243] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:38.293] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:38.393] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 107
+[Trace 02:02:38.726] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:38.726] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:38.922] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 108
+[Debug 02:02:38.922] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:38.972] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:39.072] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 108
+[Trace 02:02:39.576] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:39.576] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:39.770] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 109
+[Debug 02:02:39.771] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:39.821] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:39.921] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 109
+[Trace 02:02:41.096] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:41.096] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:41.290] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 110
+[Debug 02:02:41.290] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:41.341] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:41.441] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 110
+[Trace 02:02:41.630] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:41.630] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:41.825] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 111
+[Debug 02:02:41.826] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:41.876] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:41.976] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 111
+[Trace 02:02:52.374] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:52.374] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:52.564] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 112
+[Debug 02:02:52.565] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:52.615] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:52.715] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 112
+[Trace 02:02:55.744] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:55.744] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:55.938] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 113
+[Debug 02:02:55.938] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:55.989] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:56.088] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 113
+[Trace 02:02:57.305] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:57.305] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:57.498] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 114
+[Debug 02:02:57.498] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:57.549] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:57.648] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 114
+[Trace 02:02:58.632] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:58.633] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:58.826] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 115
+[Debug 02:02:58.826] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:02:58.876] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:02:58.976] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 115
+[Trace 02:03:05.355] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:03:05.355] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:03:05.554] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 116
+[Debug 02:03:05.555] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:03:05.605] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:03:05.705] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 116
+[Trace 02:03:56.798] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:03:56.799] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:03:56.985] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 117
+[Debug 02:03:56.985] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:03:57.038] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:03:57.136] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 117
+[Trace 02:04:02.524] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:02.524] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:02.717] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 118
+[Debug 02:04:02.717] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:02.768] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:02.868] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 118
+[Trace 02:04:02.979] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:02.979] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:03.173] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 119
+[Debug 02:04:03.173] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:03.224] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:03.324] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 119
+[Trace 02:04:03.354] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:03.354] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:03.548] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 120
+[Debug 02:04:03.549] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:03.599] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:03.699] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 120
+[Trace 02:04:03.787] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:03.788] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:03.982] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 121
+[Debug 02:04:03.982] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:04.032] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:04.132] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 121
+[Trace 02:04:04.286] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:04.286] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:04.434] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:04.434] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:04.628] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 123
+[Debug 02:04:04.629] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:04.679] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:04.779] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 123
+[Trace 02:04:05.518] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:05.518] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:05.709] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 124
+[Debug 02:04:05.709] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:05.760] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:05.860] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 124
+[Trace 02:04:09.294] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:09.294] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:09.484] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 125
+[Debug 02:04:09.484] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:09.535] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:09.635] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 125
+[Trace 02:04:10.992] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:10.992] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:11.188] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 126
+[Debug 02:04:11.188] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:11.239] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:11.338] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 126
+[Trace 02:04:15.202] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:15.202] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:15.308] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:15.308] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:15.502] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 128
+[Debug 02:04:15.502] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:15.553] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:15.652] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 128
+[Trace 02:04:17.919] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:17.920] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:18.117] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 129
+[Debug 02:04:18.117] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:18.167] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:18.267] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 129
+[Trace 02:04:18.478] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:18.478] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:18.676] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 130
+[Debug 02:04:18.676] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:18.826] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 130
+[Debug 02:04:18.826] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:24.568] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:24.569] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:24.764] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 131
+[Debug 02:04:24.764] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:24.815] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:24.915] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 131
+[Trace 02:04:25.985] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:25.985] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:26.181] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 132
+[Debug 02:04:26.181] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:26.231] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:26.331] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 132
+[Trace 02:04:26.642] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:26.642] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:26.826] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:26.826] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:27.021] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 134
+[Debug 02:04:27.021] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:27.065] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:27.065] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:27.260] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 135
+[Debug 02:04:27.260] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:27.311] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:27.411] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 135
+[Trace 02:04:29.729] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:29.729] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:29.925] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 136
+[Debug 02:04:29.925] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:29.953] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:29.954] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:30.149] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 137
+[Debug 02:04:30.149] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:30.199] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:30.299] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 137
+[Trace 02:04:30.346] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:30.346] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:30.541] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 138
+[Debug 02:04:30.541] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:30.592] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:30.692] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 138
+[Trace 02:04:31.002] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:31.003] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:31.197] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 139
+[Debug 02:04:31.197] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:31.348] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 139
+[Debug 02:04:31.348] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:31.840] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:31.840] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:32.003] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:32.003] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:32.197] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 141
+[Debug 02:04:32.197] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:32.248] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:32.348] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 141
+[Trace 02:04:50.112] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:50.112] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:50.278] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:50.278] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:50.472] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 143
+[Debug 02:04:50.472] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:50.523] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:50.623] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 143
+[Trace 02:04:56.193] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:56.194] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:56.393] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 144
+[Debug 02:04:56.393] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:04:56.444] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:04:56.543] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 144
+[Trace 02:05:02.462] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:02.462] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:02.572] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:02.572] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:02.767] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 146
+[Debug 02:05:02.768] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:02.818] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:02.918] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 146
+[Trace 02:05:09.130] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:09.131] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:09.309] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:09.309] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:09.504] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 148
+[Debug 02:05:09.504] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:09.554] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:09.654] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 148
+[Trace 02:05:15.636] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:15.637] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:15.831] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 149
+[Debug 02:05:15.831] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:15.860] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:15.860] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:16.054] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 150
+[Debug 02:05:16.055] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:16.105] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.205] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 150
+[Trace 02:05:16.444] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.444] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.547] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.548] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.659] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.659] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.746] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.747] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.835] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.835] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.886] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:16.886] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:17.086] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 156
+[Debug 02:05:17.086] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:17.137] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:17.236] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 156
+[Trace 02:05:18.517] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:18.517] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:18.710] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 157
+[Debug 02:05:18.710] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:18.861] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 157
+[Debug 02:05:18.861] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:36.736] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:36.736] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:36.926] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 158
+[Debug 02:05:36.926] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:36.977] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:37.075] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 158
+[Trace 02:05:37.647] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:37.648] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:37.833] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 159
+[Debug 02:05:37.833] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:37.883] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:37.983] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 159
+[Trace 02:05:38.214] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:38.214] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:38.366] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:38.367] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:38.509] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:38.509] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:38.655] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:38.655] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:38.777] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:38.777] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:38.977] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 164
+[Debug 02:05:38.977] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:39.028] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:39.127] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 164
+[Trace 02:05:40.303] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:40.303] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:40.503] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 165
+[Debug 02:05:40.503] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:40.518] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:40.518] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:40.687] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:40.688] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:40.837] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:40.837] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:40.997] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:40.997] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:41.167] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:41.167] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:41.367] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 170
+[Debug 02:05:41.367] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:41.517] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 170
+[Debug 02:05:41.517] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:45.337] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:45.337] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:45.536] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 171
+[Debug 02:05:45.537] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:45.587] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:45.687] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 171
+[Trace 02:05:46.407] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:46.407] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:46.607] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 172
+[Debug 02:05:46.607] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:46.758] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 172
+[Debug 02:05:46.758] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:51.118] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:51.118] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:51.160] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:51.314] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 173
+[Debug 02:05:51.364] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:51.463] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 173
+[Trace 02:05:51.904] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:51.904] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:52.103] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 174
+[Debug 02:05:52.103] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:52.254] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 174
+[Debug 02:05:52.254] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:56.946] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:56.946] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:57.145] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 175
+[Debug 02:05:57.145] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:57.196] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:57.296] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 175
+[Trace 02:05:58.084] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:58.084] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:05:58.274] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 176
+[Debug 02:05:58.274] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:05:58.423] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 176
+[Debug 02:05:58.423] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:04.926] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:04.927] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:04.979] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:05.121] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 177
+[Debug 02:06:05.172] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:05.272] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 177
+[Trace 02:06:09.887] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:09.888] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:09.945] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:10.083] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 178
+[Debug 02:06:10.132] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:10.232] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 178
+[Trace 02:06:11.885] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:11.885] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:12.028] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:12.029] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:12.180] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:12.180] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:12.301] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:12.302] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:12.442] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:12.443] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:12.642] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 183
+[Debug 02:06:12.642] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:12.792] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 183
+[Debug 02:06:12.792] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:16.585] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:16.585] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:16.785] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 184
+[Debug 02:06:16.785] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:16.836] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:16.935] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 184
+[Trace 02:06:17.428] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:17.428] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:17.618] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 185
+[Debug 02:06:17.618] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:17.768] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 185
+[Debug 02:06:17.768] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:22.215] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:22.215] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:22.409] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 186
+[Debug 02:06:22.409] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:22.460] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:22.560] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 186
+[Trace 02:06:23.672] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:23.672] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:23.859] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 187
+[Debug 02:06:23.859] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:24.009] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 187
+[Debug 02:06:24.009] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:52.691] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:52.691] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:52.691] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:52.692] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:52.890] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 189
+[Debug 02:06:52.890] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:52.940] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:53.040] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 189
+[Trace 02:06:54.024] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:54.024] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:54.158] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:54.158] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:54.302] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:54.303] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:54.454] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:54.454] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:54.535] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:54.535] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:54.730] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 194
+[Debug 02:06:54.730] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:54.781] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:54.880] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 194
+[Trace 02:06:55.030] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:55.030] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:55.164] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:55.165] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:55.325] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:55.325] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:55.493] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:55.494] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:55.689] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 198
+[Debug 02:06:55.689] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:55.740] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:55.773] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:55.773] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:55.969] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 199
+[Debug 02:06:55.969] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:56.019] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:56.119] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 199
+[Trace 02:06:56.760] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:56.760] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:56.903] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:56.903] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:57.046] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:57.047] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:57.241] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 202
+[Debug 02:06:57.241] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:57.292] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:57.392] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 202
+[Trace 02:06:57.807] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:57.807] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:57.935] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:57.935] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:58.129] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 204
+[Debug 02:06:58.129] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:06:58.180] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:06:58.280] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 204
+[Trace 02:07:01.011] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:01.011] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:07:01.210] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 205
+[Debug 02:07:01.210] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:01.361] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 205
+[Debug 02:07:01.361] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:01.651] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:01.651] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:07:01.841] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 206
+[Debug 02:07:01.841] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:01.993] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 206
+[Debug 02:07:01.993] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:08.412] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:08.412] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:07:08.612] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 207
+[Debug 02:07:08.612] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:07:08.663] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:08.762] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 207
+[Trace 02:07:13.244] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:13.244] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:07:13.438] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 208
+[Debug 02:07:13.438] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:07:13.492] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:13.589] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 208
+[Trace 02:07:17.627] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:17.628] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:07:17.827] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 209
+[Debug 02:07:17.827] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:07:17.878] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:17.978] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 209
+[Trace 02:07:19.465] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:19.465] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:07:19.652] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 210
+[Debug 02:07:19.652] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:19.802] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 210
+[Debug 02:07:19.802] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:22.201] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:22.201] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:07:22.394] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 211
+[Debug 02:07:22.394] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:07:22.447] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:07:22.545] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 211
+[Trace 02:08:16.396] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:16.396] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:16.590] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 212
+[Debug 02:08:16.591] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:16.741] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 212
+[Debug 02:08:16.741] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:16.929] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:16.929] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:17.106] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:17.106] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:17.300] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 214
+[Debug 02:08:17.300] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:17.351] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:17.450] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 214
+[Trace 02:08:17.463] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:17.463] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:17.639] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:17.639] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:17.825] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:17.826] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:18.001] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:18.001] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:18.193] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:18.193] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:18.387] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 219
+[Debug 02:08:18.388] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:18.438] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:18.538] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 219
+[Trace 02:08:22.049] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:22.050] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:22.241] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:22.241] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:22.384] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:22.384] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:22.579] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 222
+[Debug 02:08:22.579] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:22.630] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:22.730] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 222
+[Trace 02:08:23.848] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:23.848] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:23.999] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:23.999] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:24.143] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:24.143] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:24.338] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 225
+[Debug 02:08:24.338] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:24.389] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:24.489] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 225
+[Trace 02:08:24.625] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:24.625] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:24.820] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 226
+[Debug 02:08:24.820] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:24.870] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:24.970] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 226
+[Trace 02:08:25.023] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:25.023] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:25.219] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 227
+[Debug 02:08:25.219] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:25.269] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:25.369] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 227
+[Trace 02:08:25.425] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:25.425] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:25.620] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 228
+[Debug 02:08:25.620] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:25.670] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:25.681] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:25.681] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:25.876] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 229
+[Debug 02:08:25.876] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:25.927] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:26.026] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 229
+[Trace 02:08:26.195] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:26.195] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:26.328] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:26.328] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:26.523] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 231
+[Debug 02:08:26.523] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:26.574] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:26.674] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 231
+[Trace 02:08:26.700] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:26.700] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:26.892] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 232
+[Debug 02:08:26.892] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:26.943] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:27.042] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 232
+[Trace 02:08:27.457] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:27.457] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:27.652] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 233
+[Debug 02:08:27.652] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:27.698] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:27.698] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:27.892] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 234
+[Debug 02:08:27.892] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:27.943] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:28.034] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:28.034] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:28.228] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 235
+[Debug 02:08:28.228] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:28.279] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:28.292] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:28.292] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:28.484] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 236
+[Debug 02:08:28.484] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:28.577] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:28.577] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:28.773] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 237
+[Debug 02:08:28.773] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:28.823] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:28.923] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 237
+[Trace 02:08:30.027] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:30.027] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:30.220] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 238
+[Debug 02:08:30.220] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:30.371] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 238
+[Debug 02:08:30.371] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:35.522] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:35.523] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:35.717] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 239
+[Debug 02:08:35.717] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:35.768] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:35.868] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 239
+[Trace 02:08:36.018] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:36.018] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:36.178] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:36.178] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:36.337] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:36.338] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:36.474] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:36.474] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:36.602] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:36.602] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:36.796] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 244
+[Debug 02:08:36.796] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:36.947] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 244
+[Debug 02:08:36.947] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:40.226] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:40.226] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:40.421] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 245
+[Debug 02:08:40.421] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:40.472] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:40.572] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 245
+[Trace 02:08:44.553] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:44.553] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:44.606] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:44.749] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 246
+[Debug 02:08:44.799] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:44.899] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 246
+[Trace 02:08:51.914] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:51.914] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:52.109] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 247
+[Debug 02:08:52.109] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:08:52.160] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:08:52.259] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 247
+[Trace 02:09:31.846] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:09:31.846] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:09:32.036] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 248
+[Debug 02:09:32.036] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:09:32.090] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:09:32.187] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 248
+[Trace 02:10:08.863] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:10:08.863] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:10:09.062] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 249
+[Debug 02:10:09.062] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:10:09.113] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:10:09.214] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 249
+[Trace 02:10:09.990] VsCodeClientWorkspace: TextDocument.onDidChanceContent: file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:10:09.991] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:10:10.189] MdFoldingProvider: provideFoldingRanges — file:///home/will/.local/share/snippets/bookmarks 250
+[Debug 02:10:10.190] TableOfContentsProvider: create - file:///home/will/.local/share/snippets/bookmarks
+[Debug 02:10:10.241] LinkProvider: compute - file:///home/will/.local/share/snippets/bookmarks
+[Trace 02:10:10.340] DocumentSymbolProvider: provideDocumentSymbols — file:///home/will/.local/share/snippets/bookmarks 250
+[Trace 02:10:32.097] Server: connection.languages.diagnostics.on: file:///home/will/.local/share/snippets/bookmarks

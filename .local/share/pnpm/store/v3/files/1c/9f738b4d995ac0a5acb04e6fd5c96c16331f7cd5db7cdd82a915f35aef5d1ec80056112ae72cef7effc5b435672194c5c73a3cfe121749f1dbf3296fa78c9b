@@ -1,0 +1,364 @@
+/// <reference types="node" />
+import { AddressType, CertificateType, DatumType, NativeScriptType, PoolKeyType, PoolOwnerType, PoolRewardAccountType, RelayType, TransactionSigningMode, TxAuxiliaryDataType, TxOutputDestinationType, TxOutputFormat } from './public';
+export declare type VarlenAsciiString = string & {
+    __type: 'ascii';
+};
+export declare type FixlenHexString<N> = string & {
+    __type: 'hex';
+    __length: N;
+};
+export declare type HexString = string & {
+    __type: 'hex';
+};
+export declare type _Uint64_num = number & {
+    __type: 'uint64_t';
+};
+export declare type _Uint64_bigint = bigint & {
+    __type: 'uint64_t';
+};
+export declare type Uint64_str = string & {
+    __type: 'uint64_t';
+};
+export declare type Uint32_t = number & {
+    __type: 'uint32_t';
+};
+export declare type Uint16_t = number & {
+    __type: 'uint16_t';
+};
+export declare type Uint8_t = number & {
+    __type: 'uint8_t';
+};
+export declare type _Int64_num = number & {
+    __type: 'int64_t';
+};
+export declare type _Int64_bigint = bigint & {
+    __type: 'int64_t';
+};
+export declare type Int64_str = string & {
+    __type: 'int64_t';
+};
+export declare type ValidBIP32Path = Array<Uint32_t> & {
+    __type: 'bip32_path';
+};
+export { AddressType, CertificateType, DatumType, NativeScriptType, RelayType, PoolKeyType, PoolOwnerType, PoolRewardAccountType, TransactionSigningMode, TxAuxiliaryDataType, TxOutputDestinationType, TxOutputFormat };
+export { Version, DeviceCompatibility, NativeScriptHashDisplayFormat } from './public';
+export declare const EXTENDED_PUBLIC_KEY_LENGTH = 64;
+export declare const KEY_HASH_LENGTH = 28;
+export declare const SCRIPT_HASH_LENGTH = 28;
+export declare const TX_HASH_LENGTH = 32;
+export declare const AUXILIARY_DATA_HASH_LENGTH = 32;
+export declare const KES_PUBLIC_KEY_LENGTH = 32;
+export declare const VRF_KEY_HASH_LENGTH = 32;
+export declare const REWARD_ACCOUNT_HEX_LENGTH = 29;
+export declare const ED25519_SIGNATURE_LENGTH = 64;
+export declare const SCRIPT_DATA_HASH_LENGTH = 32;
+export declare const DATUM_HASH_LENGTH = 32;
+export declare const enum StakeCredentialType {
+    KEY_PATH = 0,
+    KEY_HASH = 2,
+    SCRIPT_HASH = 1
+}
+export declare type ParsedStakeCredential = {
+    type: StakeCredentialType.KEY_PATH;
+    path: ValidBIP32Path;
+} | {
+    type: StakeCredentialType.KEY_HASH;
+    keyHashHex: FixlenHexString<typeof KEY_HASH_LENGTH>;
+} | {
+    type: StakeCredentialType.SCRIPT_HASH;
+    scriptHashHex: FixlenHexString<typeof SCRIPT_HASH_LENGTH>;
+};
+export declare type ParsedCertificate = {
+    type: CertificateType.STAKE_REGISTRATION;
+    stakeCredential: ParsedStakeCredential;
+} | {
+    type: CertificateType.STAKE_DEREGISTRATION;
+    stakeCredential: ParsedStakeCredential;
+} | {
+    type: CertificateType.STAKE_DELEGATION;
+    stakeCredential: ParsedStakeCredential;
+    poolKeyHashHex: FixlenHexString<typeof KEY_HASH_LENGTH>;
+} | {
+    type: CertificateType.STAKE_POOL_REGISTRATION;
+    pool: ParsedPoolParams;
+} | {
+    type: CertificateType.STAKE_POOL_RETIREMENT;
+    path: ValidBIP32Path;
+    retirementEpoch: Uint64_str;
+};
+export declare const TOKEN_POLICY_LENGTH = 28;
+export declare type ParsedToken<IntegerType> = {
+    assetNameHex: HexString;
+    amount: IntegerType;
+};
+export declare type ParsedAssetGroup<T> = {
+    policyIdHex: FixlenHexString<typeof TOKEN_POLICY_LENGTH>;
+    tokens: Array<ParsedToken<T>>;
+};
+export declare type ParsedNetwork = {
+    protocolMagic: Uint32_t;
+    networkId: Uint8_t;
+};
+export declare const CATALYST_VOTING_PUBLIC_KEY_LENGTH = 32;
+export declare type CatalystVotingPublicKey = FixlenHexString<typeof CATALYST_VOTING_PUBLIC_KEY_LENGTH>;
+export declare type ParsedTxAuxiliaryData = {
+    type: TxAuxiliaryDataType.ARBITRARY_HASH;
+    hashHex: FixlenHexString<typeof AUXILIARY_DATA_HASH_LENGTH>;
+} | {
+    type: TxAuxiliaryDataType.CATALYST_REGISTRATION;
+    params: ParsedCatalystRegistrationParams;
+};
+export declare type ParsedCatalystRegistrationParams = {
+    type: TxAuxiliaryDataType.CATALYST_REGISTRATION;
+    votingPublicKey: CatalystVotingPublicKey;
+    stakingPath: ValidBIP32Path;
+    rewardsDestination: ShelleyAddressParams;
+    nonce: Uint64_str;
+};
+export declare type ParsedTransaction = {
+    network: ParsedNetwork;
+    inputs: ParsedInput[];
+    outputs: ParsedOutput[];
+    fee: Uint64_str;
+    ttl: Uint64_str | null;
+    certificates: ParsedCertificate[];
+    withdrawals: ParsedWithdrawal[];
+    auxiliaryData: ParsedTxAuxiliaryData | null;
+    validityIntervalStart: Uint64_str | null;
+    mint: Array<ParsedAssetGroup<Int64_str>> | null;
+    scriptDataHashHex: ScriptDataHash | null;
+    collateralInputs: ParsedInput[];
+    requiredSigners: ParsedRequiredSigner[];
+    includeNetworkId: boolean;
+    collateralOutput: ParsedOutput | null;
+    totalCollateral: Uint64_str | null;
+    referenceInputs: ParsedInput[];
+};
+export declare type ParsedSigningRequest = {
+    tx: ParsedTransaction;
+    signingMode: TransactionSigningMode;
+    additionalWitnessPaths: ValidBIP32Path[];
+};
+export declare type ParsedInput = {
+    txHashHex: FixlenHexString<typeof TX_HASH_LENGTH>;
+    outputIndex: Uint32_t;
+    path: ValidBIP32Path | null;
+};
+export declare type ParsedWithdrawal = {
+    amount: Uint64_str;
+    stakeCredential: ParsedStakeCredential;
+};
+export declare type ScriptDataHash = FixlenHexString<typeof SCRIPT_DATA_HASH_LENGTH>;
+export declare const enum RequiredSignerType {
+    PATH = 0,
+    HASH = 1
+}
+export declare type ParsedRequiredSigner = {
+    type: RequiredSignerType.HASH;
+    hashHex: FixlenHexString<typeof KEY_HASH_LENGTH>;
+} | {
+    type: RequiredSignerType.PATH;
+    path: ValidBIP32Path;
+};
+export declare type ParsedMargin = {
+    numerator: Uint64_str;
+    denominator: Uint64_str;
+};
+export declare type ParsedPoolParams = {
+    poolKey: ParsedPoolKey;
+    vrfHashHex: FixlenHexString<typeof VRF_KEY_HASH_LENGTH>;
+    pledge: Uint64_str;
+    cost: Uint64_str;
+    margin: ParsedMargin;
+    rewardAccount: ParsedPoolRewardAccount;
+    owners: ParsedPoolOwner[];
+    relays: ParsedPoolRelay[];
+    metadata: ParsedPoolMetadata | null;
+};
+export declare type ParsedPoolKey = {
+    type: PoolKeyType.DEVICE_OWNED;
+    path: ValidBIP32Path;
+} | {
+    type: PoolKeyType.THIRD_PARTY;
+    hashHex: FixlenHexString<typeof KEY_HASH_LENGTH>;
+};
+export declare type ParsedPoolOwner = {
+    type: PoolOwnerType.DEVICE_OWNED;
+    path: ValidBIP32Path;
+} | {
+    type: PoolOwnerType.THIRD_PARTY;
+    hashHex: FixlenHexString<typeof KEY_HASH_LENGTH>;
+};
+export declare type ParsedPoolRewardAccount = {
+    type: PoolRewardAccountType.DEVICE_OWNED;
+    path: ValidBIP32Path;
+} | {
+    type: PoolRewardAccountType.THIRD_PARTY;
+    rewardAccountHex: FixlenHexString<typeof REWARD_ACCOUNT_HEX_LENGTH>;
+};
+export declare type ParsedPoolRelay = {
+    type: RelayType.SINGLE_HOST_IP_ADDR;
+    port: Uint16_t | null;
+    ipv4: Buffer | null;
+    ipv6: Buffer | null;
+} | {
+    type: RelayType.SINGLE_HOST_HOSTNAME;
+    port: Uint16_t | null;
+    dnsName: VarlenAsciiString;
+} | {
+    type: RelayType.MULTI_HOST;
+    dnsName: VarlenAsciiString;
+};
+export declare type ParsedPoolMetadata = {
+    url: VarlenAsciiString;
+    hashHex: FixlenHexString<32>;
+} & {
+    __brand: 'pool_metadata';
+};
+export declare const enum SpendingDataSourceType {
+    NONE = "no_spending",
+    PATH = "spending_path",
+    SCRIPT_HASH = "spending_script_hash"
+}
+declare type SpendingDataSourceNone = {
+    type: SpendingDataSourceType.NONE;
+};
+declare type SpendingDataSourcePath = {
+    type: SpendingDataSourceType.PATH;
+    path: ValidBIP32Path;
+};
+declare type SpendingDataSourceScriptHash = {
+    type: SpendingDataSourceType.SCRIPT_HASH;
+    scriptHashHex: FixlenHexString<typeof SCRIPT_HASH_LENGTH>;
+};
+export declare const enum StakingDataSourceType {
+    NONE = "no_staking",
+    KEY_PATH = "staking_key_path",
+    KEY_HASH = "staking_key_hash",
+    BLOCKCHAIN_POINTER = "blockchain_pointer",
+    SCRIPT_HASH = "staking_script_hash"
+}
+declare type ParsedBlockchainPointer = {
+    blockIndex: Uint32_t;
+    txIndex: Uint32_t;
+    certificateIndex: Uint32_t;
+};
+declare type StakingDataSourceNone = {
+    type: StakingDataSourceType.NONE;
+};
+declare type StakingDataSourcePath = {
+    type: StakingDataSourceType.KEY_PATH;
+    path: ValidBIP32Path;
+};
+declare type StakingDataSourceKeyHash = {
+    type: StakingDataSourceType.KEY_HASH;
+    keyHashHex: FixlenHexString<typeof KEY_HASH_LENGTH>;
+};
+declare type StakingDataSourcePointer = {
+    type: StakingDataSourceType.BLOCKCHAIN_POINTER;
+    pointer: ParsedBlockchainPointer;
+};
+declare type StakingDataSourceScriptHash = {
+    type: StakingDataSourceType.SCRIPT_HASH;
+    scriptHashHex: FixlenHexString<typeof SCRIPT_HASH_LENGTH>;
+};
+export declare type SpendingDataSource = SpendingDataSourcePath | SpendingDataSourceScriptHash | SpendingDataSourceNone;
+export declare type StakingDataSource = StakingDataSourceNone | StakingDataSourcePath | StakingDataSourceKeyHash | StakingDataSourcePointer | StakingDataSourceScriptHash;
+export declare type ByronAddressParams = {
+    type: AddressType.BYRON;
+    protocolMagic: Uint32_t;
+    spendingDataSource: SpendingDataSourcePath;
+    stakingDataSource: StakingDataSourceNone;
+};
+export declare type ShelleyAddressParams = {
+    type: AddressType.BASE_PAYMENT_KEY_STAKE_KEY | AddressType.BASE_PAYMENT_SCRIPT_STAKE_KEY | AddressType.BASE_PAYMENT_KEY_STAKE_SCRIPT | AddressType.BASE_PAYMENT_SCRIPT_STAKE_SCRIPT | AddressType.ENTERPRISE_KEY | AddressType.ENTERPRISE_SCRIPT | AddressType.POINTER_KEY | AddressType.POINTER_SCRIPT | AddressType.REWARD_KEY | AddressType.REWARD_SCRIPT;
+    networkId: Uint8_t;
+} & ({
+    type: AddressType.BASE_PAYMENT_KEY_STAKE_KEY | AddressType.BASE_PAYMENT_KEY_STAKE_SCRIPT | AddressType.ENTERPRISE_KEY | AddressType.POINTER_KEY;
+    spendingDataSource: SpendingDataSourcePath;
+} | {
+    type: AddressType.BASE_PAYMENT_SCRIPT_STAKE_KEY | AddressType.BASE_PAYMENT_SCRIPT_STAKE_SCRIPT | AddressType.ENTERPRISE_SCRIPT | AddressType.POINTER_SCRIPT;
+    spendingDataSource: SpendingDataSourceScriptHash;
+} | {
+    type: AddressType.REWARD_KEY | AddressType.REWARD_SCRIPT;
+    spendingDataSource: SpendingDataSourceNone;
+}) & ({
+    type: AddressType.BASE_PAYMENT_KEY_STAKE_KEY | AddressType.BASE_PAYMENT_SCRIPT_STAKE_KEY | AddressType.REWARD_KEY;
+    stakingDataSource: StakingDataSourcePath | StakingDataSourceKeyHash;
+} | {
+    type: AddressType.BASE_PAYMENT_KEY_STAKE_SCRIPT | AddressType.BASE_PAYMENT_SCRIPT_STAKE_SCRIPT | AddressType.REWARD_SCRIPT;
+    stakingDataSource: StakingDataSourceScriptHash;
+} | {
+    type: AddressType.ENTERPRISE_KEY | AddressType.ENTERPRISE_SCRIPT;
+    stakingDataSource: StakingDataSourceNone;
+} | {
+    type: AddressType.POINTER_KEY | AddressType.POINTER_SCRIPT;
+    stakingDataSource: StakingDataSourcePointer;
+});
+export declare type ParsedAddressParams = ByronAddressParams | ShelleyAddressParams;
+export declare type OutputDestination = {
+    type: TxOutputDestinationType.THIRD_PARTY;
+    addressHex: HexString;
+} | {
+    type: TxOutputDestinationType.DEVICE_OWNED;
+    addressParams: ParsedAddressParams;
+};
+export declare type DatumHash = FixlenHexString<typeof DATUM_HASH_LENGTH>;
+export declare type ParsedDatum = {
+    type: DatumType.HASH;
+    datumHashHex: FixlenHexString<typeof DATUM_HASH_LENGTH>;
+} | {
+    type: DatumType.INLINE;
+    datumHex: HexString;
+};
+export declare type ParsedOutput = {
+    format: TxOutputFormat;
+    amount: Uint64_str;
+    tokenBundle: ParsedAssetGroup<Uint64_str>[];
+    destination: OutputDestination;
+    datum: ParsedDatum | null;
+    referenceScriptHex: HexString | null;
+};
+export declare const ASSET_NAME_LENGTH_MAX = 32;
+export declare type ParsedOperationalCertificate = {
+    kesPublicKeyHex: FixlenHexString<typeof KES_PUBLIC_KEY_LENGTH>;
+    kesPeriod: Uint64_str;
+    issueCounter: Uint64_str;
+    coldKeyPath: ValidBIP32Path;
+};
+export declare const NATIVE_SCRIPT_HASH_LENGTH = 28;
+export declare type ParsedSimpleNativeScript = {
+    type: NativeScriptType.PUBKEY_DEVICE_OWNED;
+    params: {
+        path: ValidBIP32Path;
+    };
+} | {
+    type: NativeScriptType.PUBKEY_THIRD_PARTY;
+    params: {
+        keyHashHex: FixlenHexString<typeof KEY_HASH_LENGTH>;
+    };
+} | {
+    type: NativeScriptType.INVALID_BEFORE;
+    params: {
+        slot: Uint64_str;
+    };
+} | {
+    type: NativeScriptType.INVALID_HEREAFTER;
+    params: {
+        slot: Uint64_str;
+    };
+};
+export declare type ParsedComplexNativeScript = {
+    type: NativeScriptType.ALL | NativeScriptType.ANY;
+    params: {
+        scripts: ParsedNativeScript[];
+    };
+} | {
+    type: NativeScriptType.N_OF_K;
+    params: {
+        requiredCount: Uint32_t;
+        scripts: ParsedNativeScript[];
+    };
+};
+export declare type ParsedNativeScript = ParsedSimpleNativeScript | ParsedComplexNativeScript;
+//# sourceMappingURL=internal.d.ts.map

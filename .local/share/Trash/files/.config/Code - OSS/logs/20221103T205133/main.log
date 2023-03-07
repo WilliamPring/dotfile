@@ -1,0 +1,8 @@
+[2022-11-03 20:51:33.857] [main] [info] update#ctor - updates are disabled as there is no update URL
+[2022-11-03 20:51:34.879] [main] [info] Starting extension host with pid 7396 (fork() took 9 ms).
+[2022-11-03 21:36:29.864] [main] [info] Starting extension host with pid 15693 (fork() took 6 ms).
+[2022-11-03 22:01:59.681] [main] [info] Starting extension host with pid 20014 (fork() took 5 ms).
+[2022-11-03 22:02:02.821] [main] [info] Extension host with pid 20014 exited with code: 0, signal: null.
+[2022-11-03 22:44:55.063] [main] [info] Extension host with pid 7396 exited with code: 0, signal: null.
+[2022-11-03 22:46:10.530] [main] [info] Starting extension host with pid 23875 (fork() took 5 ms).
+[2022-11-03 22:47:16.596] [main] [info] Starting extension host with pid 24367 (fork() took 5 ms).

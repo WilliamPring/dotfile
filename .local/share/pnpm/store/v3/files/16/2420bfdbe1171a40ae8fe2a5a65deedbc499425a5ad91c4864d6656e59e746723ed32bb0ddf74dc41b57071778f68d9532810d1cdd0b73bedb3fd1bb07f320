@@ -1,0 +1,347 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseSignTransactionRequest = exports.parseSigningMode = exports.parseTransaction = void 0;
+const errors_1 = require("../errors");
+const invalidDataReason_1 = require("../errors/invalidDataReason");
+const internal_1 = require("../types/internal");
+const public_1 = require("../types/public");
+const assert_1 = require("../utils/assert");
+const parse_1 = require("../utils/parse");
+const address_1 = require("./address");
+const certificate_1 = require("./certificate");
+const constants_1 = require("./constants");
+const network_1 = require("./network");
+const txAuxiliaryData_1 = require("./txAuxiliaryData");
+function parseCertificates(certificates) {
+    parse_1.validate(parse_1.isArray(certificates), invalidDataReason_1.InvalidDataReason.CERTIFICATES_NOT_ARRAY);
+    const parsed = certificates.map(cert => certificate_1.parseCertificate(cert));
+    return parsed;
+}
+function parseToken(token, parseTokenAmountFn) {
+    const assetNameHex = parse_1.parseHexString(token.assetNameHex, invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_ASSET_NAME);
+    parse_1.validate(token.assetNameHex.length <= internal_1.ASSET_NAME_LENGTH_MAX * 2, invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_ASSET_NAME);
+    const amount = parseTokenAmountFn(token.amount, {}, invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_TOKEN_AMOUNT);
+    return {
+        assetNameHex,
+        amount,
+    };
+}
+function parseAssetGroup(assetGroup, parseTokenAmountFn) {
+    parse_1.validate(parse_1.isArray(assetGroup.tokens), invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_ASSET_GROUP_NOT_ARRAY);
+    parse_1.validate(assetGroup.tokens.length <= constants_1.TOKENS_IN_GROUP_MAX, invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_ASSET_GROUP_TOO_LARGE);
+    parse_1.validate(assetGroup.tokens.length > 0, invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_ASSET_GROUP_EMPTY);
+    const parsedAssetGroup = {
+        policyIdHex: parse_1.parseHexStringOfLength(assetGroup.policyIdHex, internal_1.TOKEN_POLICY_LENGTH, invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_POLICY_NAME),
+        tokens: assetGroup.tokens.map(t => parseToken(t, parseTokenAmountFn)),
+    };
+    const assetNamesHex = parsedAssetGroup.tokens.map(t => t.assetNameHex);
+    parse_1.validate(assetNamesHex.length === new Set(assetNamesHex).size, invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_ASSET_GROUP_NOT_UNIQUE);
+    const sortedAssetNames = [...assetNamesHex].sort((n1, n2) => {
+        if (n1.length === n2.length)
+            return n1.localeCompare(n2);
+        else
+            return n1.length - n2.length;
+    });
+    parse_1.validate(JSON.stringify(assetNamesHex) === JSON.stringify(sortedAssetNames), invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_ASSET_GROUP_ORDERING);
+    return parsedAssetGroup;
+}
+function parseTokenBundle(tokenBundle, emptyTokenBundleAllowed, parseTokenAmountFn) {
+    parse_1.validate(parse_1.isArray(tokenBundle), invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_TOKEN_BUNDLE_NOT_ARRAY);
+    parse_1.validate(tokenBundle.length <= constants_1.ASSET_GROUPS_MAX, invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_TOKEN_BUNDLE_TOO_LARGE);
+    parse_1.validate(emptyTokenBundleAllowed || tokenBundle.length > 0, invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_TOKEN_BUNDLE_EMPTY);
+    const parsedTokenBundle = tokenBundle.map(ag => parseAssetGroup(ag, parseTokenAmountFn));
+    const policyIds = parsedTokenBundle.map(ag => ag.policyIdHex);
+    parse_1.validate(policyIds.length === new Set(policyIds).size, invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_TOKEN_BUNDLE_NOT_UNIQUE);
+    const sortedPolicyIds = [...policyIds].sort();
+    parse_1.validate(JSON.stringify(policyIds) === JSON.stringify(sortedPolicyIds), invalidDataReason_1.InvalidDataReason.MULTIASSET_INVALID_TOKEN_BUNDLE_ORDERING);
+    return parsedTokenBundle;
+}
+function parseDatumHash(datumHashHex) {
+    return {
+        type: public_1.DatumType.HASH,
+        datumHashHex: parse_1.parseHexStringOfLength(datumHashHex, internal_1.DATUM_HASH_LENGTH, invalidDataReason_1.InvalidDataReason.OUTPUT_INVALID_DATUM_HASH),
+    };
+}
+function parseDatum(output) {
+    var _a, _b;
+    if (output.format === public_1.TxOutputFormat.MAP_BABBAGE) {
+        switch ((_a = output.datum) === null || _a === void 0 ? void 0 : _a.type) {
+            case public_1.DatumType.HASH:
+                return parseDatumHash((_b = output.datum) === null || _b === void 0 ? void 0 : _b.datumHashHex);
+            case public_1.DatumType.INLINE:
+                return {
+                    type: public_1.DatumType.INLINE,
+                    datumHex: parse_1.parseHexString(output.datum.datumHex, invalidDataReason_1.InvalidDataReason.OUTPUT_INVALID_INLINE_DATUM),
+                };
+            default:
+                return null;
+        }
+    }
+    else {
+        return output.datumHashHex == null
+            ? null
+            : parseDatumHash(output.datumHashHex);
+    }
+}
+function parseBoolean(value, errorMsg) {
+    parse_1.validate(typeof value === 'boolean', errorMsg);
+    return value;
+}
+function parseTransaction(tx) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+    const network = network_1.parseNetwork(tx.network);
+    parse_1.validate(parse_1.isArray(tx.inputs), invalidDataReason_1.InvalidDataReason.INPUTS_NOT_ARRAY);
+    const inputs = tx.inputs.map(inp => parseTxInput(inp));
+    parse_1.validate(parse_1.isArray(tx.outputs), invalidDataReason_1.InvalidDataReason.OUTPUTS_NOT_ARRAY);
+    const outputs = tx.outputs.map(o => parseTxOutput(o, tx.network));
+    const fee = parse_1.parseUint64_str(tx.fee, { max: constants_1.MAX_LOVELACE_SUPPLY_STR }, invalidDataReason_1.InvalidDataReason.FEE_INVALID);
+    const ttl = tx.ttl == null
+        ? null
+        : parse_1.parseUint64_str(tx.ttl, {}, invalidDataReason_1.InvalidDataReason.TTL_INVALID);
+    parse_1.validate(parse_1.isArray((_a = tx.certificates) !== null && _a !== void 0 ? _a : []), invalidDataReason_1.InvalidDataReason.CERTIFICATES_NOT_ARRAY);
+    const certificates = parseCertificates((_b = tx.certificates) !== null && _b !== void 0 ? _b : []);
+    parse_1.validate(parse_1.isArray((_c = tx.withdrawals) !== null && _c !== void 0 ? _c : []), invalidDataReason_1.InvalidDataReason.WITHDRAWALS_NOT_ARRAY);
+    const withdrawals = ((_d = tx.withdrawals) !== null && _d !== void 0 ? _d : []).map(w => parseWithdrawal(w));
+    const auxiliaryData = tx.auxiliaryData == null
+        ? null
+        : txAuxiliaryData_1.parseTxAuxiliaryData(network, tx.auxiliaryData);
+    const validityIntervalStart = tx.validityIntervalStart == null
+        ? null
+        : parse_1.parseUint64_str(tx.validityIntervalStart, {}, invalidDataReason_1.InvalidDataReason.VALIDITY_INTERVAL_START_INVALID);
+    const mint = tx.mint == null
+        ? null
+        : parseTokenBundle(tx.mint, false, parse_1.parseInt64_str);
+    const scriptDataHashHex = tx.scriptDataHashHex == null
+        ? null
+        : parse_1.parseHexStringOfLength(tx.scriptDataHashHex, internal_1.SCRIPT_DATA_HASH_LENGTH, invalidDataReason_1.InvalidDataReason.SCRIPT_DATA_HASH_WRONG_LENGTH);
+    parse_1.validate(parse_1.isArray((_e = tx.collateralInputs) !== null && _e !== void 0 ? _e : []), invalidDataReason_1.InvalidDataReason.COLLATERAL_INPUTS_NOT_ARRAY);
+    const collateralInputs = ((_f = tx.collateralInputs) !== null && _f !== void 0 ? _f : []).map(inp => parseTxInput(inp));
+    parse_1.validate(parse_1.isArray((_g = tx.requiredSigners) !== null && _g !== void 0 ? _g : []), invalidDataReason_1.InvalidDataReason.REQUIRED_SIGNERS_NOT_ARRAY);
+    const requiredSigners = ((_h = tx.requiredSigners) !== null && _h !== void 0 ? _h : []).map(rs => parseRequiredSigner(rs));
+    const includeNetworkId = tx.includeNetworkId == null
+        ? false
+        : parseBoolean(tx.includeNetworkId, invalidDataReason_1.InvalidDataReason.NETWORK_ID_INCLUDE_INVALID);
+    const collateralOutput = tx.collateralOutput == null
+        ? null
+        : parseTxOutput(tx.collateralOutput, tx.network);
+    parse_1.validate((collateralOutput === null || collateralOutput === void 0 ? void 0 : collateralOutput.datum) == null, invalidDataReason_1.InvalidDataReason.COLLATERAL_INPUT_CONTAINS_DATUM);
+    parse_1.validate((collateralOutput === null || collateralOutput === void 0 ? void 0 : collateralOutput.referenceScriptHex) == null, invalidDataReason_1.InvalidDataReason.COLLATERAL_INPUT_CONTAINS_REFERENCE_SCRIPT);
+    const totalCollateral = tx.totalCollateral == null
+        ? null
+        : parse_1.parseUint64_str(tx.totalCollateral, { max: constants_1.MAX_LOVELACE_SUPPLY_STR }, invalidDataReason_1.InvalidDataReason.TOTAL_COLLATERAL_NOT_VALID);
+    parse_1.validate(parse_1.isArray((_j = tx.referenceInputs) !== null && _j !== void 0 ? _j : []), invalidDataReason_1.InvalidDataReason.REFERENCE_INPUTS_NOT_ARRAY);
+    const referenceInputs = ((_k = tx.referenceInputs) !== null && _k !== void 0 ? _k : []).map(ri => parseTxInput(ri));
+    return {
+        network,
+        inputs,
+        outputs,
+        ttl,
+        auxiliaryData,
+        validityIntervalStart,
+        withdrawals,
+        certificates,
+        fee,
+        mint,
+        scriptDataHashHex,
+        collateralInputs,
+        requiredSigners,
+        includeNetworkId,
+        collateralOutput,
+        totalCollateral,
+        referenceInputs,
+    };
+}
+exports.parseTransaction = parseTransaction;
+function parseTxInput(input) {
+    const txHashHex = parse_1.parseHexStringOfLength(input.txHashHex, internal_1.TX_HASH_LENGTH, invalidDataReason_1.InvalidDataReason.INPUT_INVALID_TX_HASH);
+    const outputIndex = parse_1.parseUint32_t(input.outputIndex, invalidDataReason_1.InvalidDataReason.INPUT_INVALID_UTXO_INDEX);
+    return {
+        txHashHex,
+        outputIndex,
+        path: input.path != null ? parse_1.parseBIP32Path(input.path, invalidDataReason_1.InvalidDataReason.INPUT_INVALID_PATH) : null,
+    };
+}
+function parseWithdrawal(params) {
+    return {
+        amount: parse_1.parseUint64_str(params.amount, { max: constants_1.MAX_LOVELACE_SUPPLY_STR }, invalidDataReason_1.InvalidDataReason.WITHDRAWAL_INVALID_AMOUNT),
+        stakeCredential: parse_1.parseStakeCredential(params.stakeCredential, invalidDataReason_1.InvalidDataReason.WITHDRAWAL_INVALID_STAKE_CREDENTIAL),
+    };
+}
+function parseTxDestination(network, destination) {
+    switch (destination.type) {
+        case public_1.TxOutputDestinationType.THIRD_PARTY: {
+            const params = destination.params;
+            const addressHex = parse_1.parseHexString(params.addressHex, invalidDataReason_1.InvalidDataReason.OUTPUT_INVALID_ADDRESS);
+            parse_1.validate(params.addressHex.length <= 128 * 2, invalidDataReason_1.InvalidDataReason.OUTPUT_INVALID_ADDRESS);
+            return {
+                type: public_1.TxOutputDestinationType.THIRD_PARTY,
+                addressHex,
+            };
+        }
+        case public_1.TxOutputDestinationType.DEVICE_OWNED: {
+            const params = destination.params;
+            const addressParams = address_1.parseAddress(network, params);
+            parse_1.validate(addressParams.spendingDataSource.type == "spending_path", invalidDataReason_1.InvalidDataReason.OUTPUT_INVALID_ADDRESS_PARAMS);
+            return {
+                type: public_1.TxOutputDestinationType.DEVICE_OWNED,
+                addressParams: addressParams,
+            };
+        }
+        default:
+            throw new errors_1.InvalidData(invalidDataReason_1.InvalidDataReason.ADDRESS_UNKNOWN_TYPE);
+    }
+}
+function parseTxOutput(output, network) {
+    var _a;
+    const format = output.format === public_1.TxOutputFormat.MAP_BABBAGE
+        ? public_1.TxOutputFormat.MAP_BABBAGE
+        : public_1.TxOutputFormat.ARRAY_LEGACY;
+    const amount = parse_1.parseUint64_str(output.amount, { max: constants_1.MAX_LOVELACE_SUPPLY_STR }, invalidDataReason_1.InvalidDataReason.OUTPUT_INVALID_AMOUNT);
+    const tokenBundle = parseTokenBundle((_a = output.tokenBundle) !== null && _a !== void 0 ? _a : [], true, parse_1.parseUint64_str);
+    const destination = parseTxDestination(network, output.destination);
+    const datum = parseDatum(output);
+    if ((datum === null || datum === void 0 ? void 0 : datum.type) === public_1.DatumType.INLINE) {
+        parse_1.validate(output.format === public_1.TxOutputFormat.MAP_BABBAGE, invalidDataReason_1.InvalidDataReason.OUTPUT_INCONSISTENT_DATUM);
+    }
+    const referenceScriptHex = output.format === public_1.TxOutputFormat.MAP_BABBAGE && output.referenceScriptHex
+        ? parse_1.parseHexString(output.referenceScriptHex, invalidDataReason_1.InvalidDataReason.OUTPUT_INVALID_REFERENCE_SCRIPT_HEX)
+        : null;
+    if (referenceScriptHex != null) {
+        parse_1.validate(output.format === public_1.TxOutputFormat.MAP_BABBAGE, invalidDataReason_1.InvalidDataReason.OUTPUT_INCONSISTENT_REFERENCE_SCRIPT);
+    }
+    return {
+        format,
+        amount,
+        tokenBundle,
+        destination,
+        datum,
+        referenceScriptHex,
+    };
+}
+function parseRequiredSigner(requiredSigner) {
+    switch (requiredSigner.type) {
+        case public_1.TxRequiredSignerType.PATH:
+            return {
+                type: 0,
+                path: parse_1.parseBIP32Path(requiredSigner.path, invalidDataReason_1.InvalidDataReason.REQUIRED_SIGNER_INVALID_PATH),
+            };
+        case public_1.TxRequiredSignerType.HASH:
+            return {
+                type: 1,
+                hashHex: parse_1.parseHexStringOfLength(requiredSigner.hashHex, internal_1.KEY_HASH_LENGTH, invalidDataReason_1.InvalidDataReason.VKEY_HASH_WRONG_LENGTH),
+            };
+        default:
+            throw new errors_1.InvalidData(invalidDataReason_1.InvalidDataReason.UNKNOWN_REQUIRED_SIGNER_TYPE);
+    }
+}
+function parseSigningMode(mode) {
+    switch (mode) {
+        case public_1.TransactionSigningMode.ORDINARY_TRANSACTION:
+        case public_1.TransactionSigningMode.POOL_REGISTRATION_AS_OWNER:
+        case public_1.TransactionSigningMode.POOL_REGISTRATION_AS_OPERATOR:
+        case public_1.TransactionSigningMode.MULTISIG_TRANSACTION:
+        case public_1.TransactionSigningMode.PLUTUS_TRANSACTION:
+            return mode;
+        default:
+            throw new errors_1.InvalidData(invalidDataReason_1.InvalidDataReason.SIGN_MODE_UNKNOWN);
+    }
+}
+exports.parseSigningMode = parseSigningMode;
+function parseSignTransactionRequest(request) {
+    var _a, _b;
+    const tx = parseTransaction(request.tx);
+    const signingMode = parseSigningMode(request.signingMode);
+    parse_1.validate(parse_1.isArray((_a = request.additionalWitnessPaths) !== null && _a !== void 0 ? _a : []), invalidDataReason_1.InvalidDataReason.ADDITIONAL_WITNESSES_NOT_ARRAY);
+    const additionalWitnessPaths = ((_b = request.additionalWitnessPaths) !== null && _b !== void 0 ? _b : []).map(path => parse_1.parseBIP32Path(path, invalidDataReason_1.InvalidDataReason.INVALID_PATH));
+    switch (signingMode) {
+        case public_1.TransactionSigningMode.ORDINARY_TRANSACTION: {
+            parse_1.validate(tx.certificates.every(certificate => certificate.type !== internal_1.CertificateType.STAKE_POOL_REGISTRATION), invalidDataReason_1.InvalidDataReason.SIGN_MODE_ORDINARY__POOL_REGISTRATION_NOT_ALLOWED);
+            parse_1.validate(tx.certificates.every(certificate => {
+                switch (certificate.type) {
+                    case internal_1.CertificateType.STAKE_REGISTRATION:
+                    case internal_1.CertificateType.STAKE_DEREGISTRATION:
+                    case internal_1.CertificateType.STAKE_DELEGATION:
+                        return certificate.stakeCredential.type === 0;
+                    default:
+                        return true;
+                }
+            }), invalidDataReason_1.InvalidDataReason.SIGN_MODE_ORDINARY__CERTIFICATE_STAKE_CREDENTIAL_ONLY_AS_PATH);
+            parse_1.validate(tx.withdrawals.every(withdrawal => withdrawal.stakeCredential.type === 0), invalidDataReason_1.InvalidDataReason.SIGN_MODE_ORDINARY__WITHDRAWAL_ONLY_AS_PATH);
+            parse_1.validate(tx.collateralInputs.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_ORDINARY__COLLATERAL_INPUTS_NOT_ALLOWED);
+            parse_1.validate(tx.collateralOutput === null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_ORDINARY__COLLATERAL_OUTPUT_NOT_ALLOWED);
+            parse_1.validate(tx.totalCollateral === null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_ORDINARY__TOTAL_COLLATERAL_NOT_ALLOWED);
+            parse_1.validate(tx.referenceInputs.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_ORDINARY__REFERENCE_INPUTS_NOT_ALLOWED);
+            break;
+        }
+        case public_1.TransactionSigningMode.MULTISIG_TRANSACTION: {
+            parse_1.validate(tx.outputs.every(output => output.destination.type === public_1.TxOutputDestinationType.THIRD_PARTY), invalidDataReason_1.InvalidDataReason.SIGN_MODE_MULTISIG__DEVICE_OWNED_ADDRESS_NOT_ALLOWED);
+            parse_1.validate(tx.certificates.every(certificate => certificate.type !== internal_1.CertificateType.STAKE_POOL_REGISTRATION), invalidDataReason_1.InvalidDataReason.SIGN_MODE_MULTISIG__POOL_REGISTRATION_NOT_ALLOWED);
+            parse_1.validate(tx.certificates.every(certificate => certificate.type !== internal_1.CertificateType.STAKE_POOL_RETIREMENT), invalidDataReason_1.InvalidDataReason.SIGN_MODE_MULTISIG__POOL_RETIREMENT_NOT_ALLOWED);
+            parse_1.validate(tx.certificates.every(certificate => {
+                switch (certificate.type) {
+                    case internal_1.CertificateType.STAKE_REGISTRATION:
+                    case internal_1.CertificateType.STAKE_DEREGISTRATION:
+                    case internal_1.CertificateType.STAKE_DELEGATION:
+                        return certificate.stakeCredential.type === 1;
+                    default:
+                        return true;
+                }
+            }), invalidDataReason_1.InvalidDataReason.SIGN_MODE_MULTISIG__CERTIFICATE_STAKE_CREDENTIAL_ONLY_AS_SCRIPT);
+            parse_1.validate(tx.withdrawals.every(withdrawal => withdrawal.stakeCredential.type === 1), invalidDataReason_1.InvalidDataReason.SIGN_MODE_MULTISIG__WITHDRAWAL_ONLY_AS_SCRIPT);
+            parse_1.validate(tx.collateralInputs.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_MULTISIG__COLLATERAL_INPUTS_NOT_ALLOWED);
+            parse_1.validate(tx.collateralOutput === null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_MULTISIG__COLLATERAL_OUTPUT_NOT_ALLOWED);
+            parse_1.validate(tx.totalCollateral === null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_MULTISIG__TOTAL_COLLATERAL_NOT_ALLOWED);
+            parse_1.validate(tx.referenceInputs.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_MULTISIG__REFERENCE_INPUTS_NOT_ALLOWED);
+            break;
+        }
+        case public_1.TransactionSigningMode.POOL_REGISTRATION_AS_OWNER: {
+            parse_1.validate(tx.inputs.every(inp => inp.path == null), invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__INPUT_WITH_PATH_NOT_ALLOWED);
+            parse_1.validate(tx.outputs.every(out => out.destination.type === public_1.TxOutputDestinationType.THIRD_PARTY), invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__DEVICE_OWNED_ADDRESS_NOT_ALLOWED);
+            parse_1.validate(tx.outputs.every(out => (out.datum == null)), invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__DATUM_NOT_ALLOWED);
+            parse_1.validate(tx.outputs.every(out => (out.referenceScriptHex == null)), invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__REFERENCE_SCRIPT_NOT_ALLOWED);
+            parse_1.validate(tx.certificates.length === 1, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__SINGLE_POOL_REG_CERTIFICATE_REQUIRED);
+            tx.certificates.forEach(certificate => {
+                parse_1.validate(certificate.type === internal_1.CertificateType.STAKE_POOL_REGISTRATION, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__SINGLE_POOL_REG_CERTIFICATE_REQUIRED);
+                parse_1.validate(certificate.pool.poolKey.type === public_1.PoolKeyType.THIRD_PARTY, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__THIRD_PARTY_POOL_KEY_REQUIRED);
+                parse_1.validate(certificate.pool.owners.filter(o => o.type === public_1.PoolOwnerType.DEVICE_OWNED).length === 1, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__SINGLE_DEVICE_OWNER_REQUIRED);
+            });
+            parse_1.validate(tx.withdrawals.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__WITHDRAWALS_NOT_ALLOWED);
+            parse_1.validate(tx.mint == null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__MINT_NOT_ALLOWED);
+            parse_1.validate(tx.scriptDataHashHex == null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__SCRIPT_DATA_HASH_NOT_ALLOWED);
+            parse_1.validate(tx.collateralInputs.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__COLLATERAL_INPUTS_NOT_ALLOWED);
+            parse_1.validate(tx.requiredSigners.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__REQUIRED_SIGNERS_NOT_ALLOWED);
+            parse_1.validate(tx.collateralOutput === null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__COLLATERAL_OUTPUT_NOT_ALLOWED);
+            parse_1.validate(tx.totalCollateral === null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__TOTAL_COLLATERAL_NOT_ALLOWED);
+            parse_1.validate(tx.referenceInputs.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OWNER__REFERENCE_INPUTS_NOT_ALLOWED);
+            break;
+        }
+        case public_1.TransactionSigningMode.POOL_REGISTRATION_AS_OPERATOR: {
+            parse_1.validate(tx.outputs.every(out => (out.datum == null)), invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__DATUM_NOT_ALLOWED);
+            parse_1.validate(tx.outputs.every(out => (out.referenceScriptHex == null)), invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__REFERENCE_SCRIPT_NOT_ALLOWED);
+            parse_1.validate(tx.certificates.length === 1, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__SINGLE_POOL_REG_CERTIFICATE_REQUIRED);
+            tx.certificates.forEach(certificate => {
+                parse_1.validate(certificate.type === internal_1.CertificateType.STAKE_POOL_REGISTRATION, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__SINGLE_POOL_REG_CERTIFICATE_REQUIRED);
+                parse_1.validate(certificate.pool.poolKey.type === public_1.PoolKeyType.DEVICE_OWNED, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__DEVICE_OWNED_POOL_KEY_REQUIRED);
+                parse_1.validate(certificate.pool.owners.filter(o => o.type === public_1.PoolOwnerType.DEVICE_OWNED).length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__DEVICE_OWNED_POOL_OWNER_NOT_ALLOWED);
+            });
+            parse_1.validate(tx.withdrawals.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__WITHDRAWALS_NOT_ALLOWED);
+            parse_1.validate(tx.mint == null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__MINT_NOT_ALLOWED);
+            parse_1.validate(tx.scriptDataHashHex == null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__SCRIPT_DATA_HASH_NOT_ALLOWED);
+            parse_1.validate(tx.collateralInputs.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__COLLATERAL_INPUTS_NOT_ALLOWED);
+            parse_1.validate(tx.requiredSigners.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__REQUIRED_SIGNERS_NOT_ALLOWED);
+            parse_1.validate(tx.collateralOutput === null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__COLLATERAL_OUTPUT_NOT_ALLOWED);
+            parse_1.validate(tx.totalCollateral === null, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__TOTAL_COLLATERAL_NOT_ALLOWED);
+            parse_1.validate(tx.referenceInputs.length === 0, invalidDataReason_1.InvalidDataReason.SIGN_MODE_POOL_OPERATOR__REFERENCE_INPUTS_NOT_ALLOWED);
+            break;
+        }
+        case public_1.TransactionSigningMode.PLUTUS_TRANSACTION: {
+            parse_1.validate(tx.certificates.every(certificate => certificate.type !== internal_1.CertificateType.STAKE_POOL_REGISTRATION), invalidDataReason_1.InvalidDataReason.SIGN_MODE_PLUTUS__POOL_REGISTRATION_NOT_ALLOWED);
+            break;
+        }
+        default:
+            assert_1.unreachable(signingMode);
+    }
+    return { tx, signingMode, additionalWitnessPaths: additionalWitnessPaths };
+}
+exports.parseSignTransactionRequest = parseSignTransactionRequest;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidHJhbnNhY3Rpb24uanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zcmMvcGFyc2luZy90cmFuc2FjdGlvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxzQ0FBcUM7QUFDckMsbUVBQTZEO0FBYzdELGdEQVcwQjtBQWMxQiw0Q0FRd0I7QUFDeEIsNENBQTJDO0FBQzNDLDBDQVV1QjtBQUN2Qix1Q0FBc0M7QUFDdEMsK0NBQThDO0FBQzlDLDJDQUEwRjtBQUMxRix1Q0FBc0M7QUFDdEMsdURBQXNEO0FBRXRELFNBQVMsaUJBQWlCLENBQUMsWUFBZ0M7SUFDdkQsZ0JBQVEsQ0FBQyxlQUFPLENBQUMsWUFBWSxDQUFDLEVBQUUscUNBQWlCLENBQUMsc0JBQXNCLENBQUMsQ0FBQTtJQUV6RSxNQUFNLE1BQU0sR0FBRyxZQUFZLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsOEJBQWdCLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQTtJQUUvRCxPQUFPLE1BQU0sQ0FBQTtBQUNqQixDQUFDO0FBU0QsU0FBUyxVQUFVLENBQUksS0FBWSxFQUFFLGtCQUF5QztJQUMxRSxNQUFNLFlBQVksR0FBRyxzQkFBYyxDQUFDLEtBQUssQ0FBQyxZQUFZLEVBQUUscUNBQWlCLENBQUMsNkJBQTZCLENBQUMsQ0FBQTtJQUN4RyxnQkFBUSxDQUNKLEtBQUssQ0FBQyxZQUFZLENBQUMsTUFBTSxJQUFJLGdDQUFxQixHQUFHLENBQUMsRUFDdEQscUNBQWlCLENBQUMsNkJBQTZCLENBQ2xELENBQUE7SUFFRCxNQUFNLE1BQU0sR0FBRyxrQkFBa0IsQ0FBQyxLQUFLLENBQUMsTUFBTSxFQUFFLEVBQUUsRUFBRSxxQ0FBaUIsQ0FBQywrQkFBK0IsQ0FBQyxDQUFBO0lBQ3RHLE9BQU87UUFDSCxZQUFZO1FBQ1osTUFBTTtLQUNULENBQUE7QUFDTCxDQUFDO0FBRUQsU0FBUyxlQUFlLENBQUksVUFBc0IsRUFBRSxrQkFBeUM7SUFDekYsZ0JB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

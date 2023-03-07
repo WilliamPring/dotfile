@@ -1,0 +1,66 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ensureLedgerAppVersionCompatible = exports.isLedgerAppVersionAtMost = exports.isLedgerAppVersionAtLeast = exports.getCompatibility = exports.getVersion = void 0;
+const errors_1 = require("../errors");
+const utils_1 = require("../utils");
+const send = (params) => (Object.assign({ ins: 0 }, params));
+function* getVersion() {
+    const P1_UNUSED = 0x00;
+    const P2_UNUSED = 0x00;
+    const response = yield send({
+        p1: P1_UNUSED,
+        p2: P2_UNUSED,
+        data: Buffer.alloc(0),
+        expectedResponseLength: 4,
+    });
+    const [major, minor, patch, flags_value] = response;
+    const FLAG_IS_DEBUG = 1;
+    const flags = {
+        isDebug: (flags_value & FLAG_IS_DEBUG) === FLAG_IS_DEBUG,
+    };
+    return { major, minor, patch, flags };
+}
+exports.getVersion = getVersion;
+function getCompatibility(version) {
+    const v2_2 = isLedgerAppVersionAtLeast(version, 2, 2) && isLedgerAppVersionAtMost(version, 5, Infinity);
+    const v2_3 = isLedgerAppVersionAtLeast(version, 2, 3) && isLedgerAppVersionAtMost(version, 5, Infinity);
+    const v2_4 = isLedgerAppVersionAtLeast(version, 2, 4) && isLedgerAppVersionAtMost(version, 5, Infinity);
+    const v3_0 = isLedgerAppVersionAtLeast(version, 3, 0) && isLedgerAppVersionAtMost(version, 5, Infinity);
+    const v4_0_Alonzo = isLedgerAppVersionAtLeast(version, 4, 0) && isLedgerAppVersionAtMost(version, 5, Infinity);
+    const v4_1 = isLedgerAppVersionAtLeast(version, 4, 1) && isLedgerAppVersionAtMost(version, 5, Infinity);
+    const v5_0 = isLedgerAppVersionAtLeast(version, 5, 0) && isLedgerAppVersionAtMost(version, 5, Infinity);
+    return {
+        isCompatible: v2_2,
+        recommendedVersion: v2_2 ? null : '5.0',
+        supportsMary: v2_2,
+        supportsCatalystRegistration: v2_3,
+        supportsZeroTtl: v2_3,
+        supportsPoolRegistrationAsOperator: v2_4,
+        supportsPoolRetirement: v2_4,
+        supportsNativeScriptHashDerivation: v3_0,
+        supportsMultisigTransaction: v3_0,
+        supportsMint: v3_0,
+        supportsAlonzo: v4_0_Alonzo,
+        supportsReqSignersInOrdinaryTx: v4_1,
+        supportsBabbage: v5_0,
+    };
+}
+exports.getCompatibility = getCompatibility;
+function isLedgerAppVersionAtLeast(version, minMajor, minMinor) {
+    const { major, minor } = version;
+    return major > minMajor || (major === minMajor && minor >= minMinor);
+}
+exports.isLedgerAppVersionAtLeast = isLedgerAppVersionAtLeast;
+function isLedgerAppVersionAtMost(version, maxMajor, maxMinor) {
+    const { major, minor } = version;
+    return major < maxMajor || (major === maxMajor && minor <= maxMinor);
+}
+exports.isLedgerAppVersionAtMost = isLedgerAppVersionAtMost;
+function ensureLedgerAppVersionCompatible(version) {
+    const { isCompatible, recommendedVersion } = getCompatibility(version);
+    if (!isCompatible) {
+        throw new errors_1.DeviceVersionUnsupported(`Device app version ${utils_1.getVersionString(version)} unsupported, recommended version is ${recommendedVersion}.`);
+    }
+}
+exports.ensureLedgerAppVersionCompatible = ensureLedgerAppVersionCompatible;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2V0VmVyc2lvbi5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9pbnRlcmFjdGlvbnMvZ2V0VmVyc2lvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxzQ0FBb0Q7QUFFcEQsb0NBQTJDO0FBSTNDLE1BQU0sSUFBSSxHQUFHLENBQUMsTUFLYixFQUFjLEVBQUUsQ0FBQyxpQkFBRyxHQUFHLE9BQXNCLE1BQU0sRUFBRyxDQUFBO0FBR3ZELFFBQWUsQ0FBQyxDQUFDLFVBQVU7SUFLdkIsTUFBTSxTQUFTLEdBQUcsSUFBSSxDQUFBO0lBQ3RCLE1BQU0sU0FBUyxHQUFHLElBQUksQ0FBQTtJQUN0QixNQUFNLFFBQVEsR0FBRyxNQUFNLElBQUksQ0FBQztRQUN4QixFQUFFLEVBQUUsU0FBUztRQUNiLEVBQUUsRUFBRSxTQUFTO1FBQ2IsSUFBSSxFQUFFLE1BQU0sQ0FBQyxLQUFLLENBQUMsQ0FBQyxDQUFDO1FBQ3JCLHNCQUFzQixFQUFFLENBQUM7S0FDNUIsQ0FBQyxDQUFBO0lBQ0YsTUFBTSxDQUFDLEtBQUssRUFBRSxLQUFLLEVBQUUsS0FBSyxFQUFFLFdBQVcsQ0FBQyxHQUFHLFFBQVEsQ0FBQTtJQUVuRCxNQUFNLGFBQWEsR0FBRyxDQUFDLENBQUE7SUFHdkIsTUFBTSxLQUFLLEdBQUc7UUFDVixPQUFPLEVBQUUsQ0FBQyxXQUFXLEdBQUcsYUFBYSxDQUFDLEtBQUssYUFBYTtLQUMzRCxDQUFBO0lBQ0QsT0FBTyxFQUFFLEtBQUssRUFBRSxLQUFLLEVBQUUsS0FBSyxFQUFFLEtBQUssRUFBRSxDQUFBO0FBQ3pDLENBQUM7QUF0QkQsZ0NBc0JDO0FBRUQsU0FBZ0IsZ0JBQWdCLENBQUMsT0FBZ0I7SUFFN0MsTUFBTSxJQUFJLEdBQUcseUJBQXlCLENBQUMsT0FBTyxFQUFFLENBQUMsRUFBRSxDQUFDLENBQUMsSUFBSSx3QkFBd0IsQ0FBQyxPQUFPLEVBQUUsQ0FBQyxFQUFFLFFBQVEsQ0FBQyxDQUFBO0lBQ3ZHLE1B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

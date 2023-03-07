@@ -1,0 +1,273 @@
+"use strict";
+/**
+ * @module LedgerLivePlatformSDK
+ */
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const json_rpc_2_0_1 = require("json-rpc-2.0");
+const logger_1 = __importDefault(require("../logger"));
+const serializers_1 = require("../serializers");
+const types_1 = require("../types");
+const defaultLogger = new logger_1.default("LL-PlatformSDK");
+class LedgerLivePlatformSDK {
+    constructor(transport, logger = defaultLogger) {
+        this.transport = transport;
+        this.logger = logger;
+    }
+    /**
+     * @ignore
+     * @internal
+     * Wrapper to api request for logging
+     */
+    _request(method, params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.serverAndClient) {
+                this.logger.error(`not connected - ${method}`);
+                throw new Error("Ledger Live API not connected");
+            }
+            this.logger.log(`request - ${method}`, params);
+            try {
+                const result = (yield this.serverAndClient.request(method, params));
+                this.logger.log(`response - ${method}`, params);
+                return result;
+            }
+            catch (error) {
+                this.logger.warn(`error - ${method}`, params);
+                throw error;
+            }
+        });
+    }
+    /**
+     * Connect the SDK to the Ledger Live instance
+     *
+     * @remarks
+     * Establish the connection with Ledger Live through the [[transport]] instance provided at initialization
+     */
+    connect() {
+        const serverAndClient = new json_rpc_2_0_1.JSONRPCServerAndClient(new json_rpc_2_0_1.JSONRPCServer(), new json_rpc_2_0_1.JSONRPCClient((payload) => this.transport.send(payload)));
+        this.transport.onMessage = (payload) => serverAndClient.receiveAndSend(payload);
+        this.transport.connect();
+        this.serverAndClient = serverAndClient;
+        this.logger.log("connected", this.transport);
+    }
+    /**
+     * Disconnect the SDK.
+     */
+    disconnect() {
+        delete this.serverAndClient;
+        this.transport.disconnect();
+        this.logger.log("disconnected", this.transport);
+    }
+    /**
+     * @ignore Not yet implemented
+     * Open a bridge to an application to exchange APDUs with a device application
+     * @param _appName - The name of the application to bridge
+     *
+     * @returns The result of the handler function
+     */
+    bridgeApp(_appName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            throw new Error("Function is not implemented yet");
+        });
+    }
+    /**
+     * @ignore Not yet implemented
+     * Open a bridge to a the device dashboard to exchange APDUs
+     *
+     * @returns A APDU transport which can be used either to send raw APDU
+     * or used with ledgerjs libraries.
+     */
+    bridgeDashboard() {
+        return __awaiter(this, void 0, void 0, function* () {
+            throw new Error("Function is not implemented yet");
+        });
+    }
+    /**
+     * @alpha
+     * Start the exchange process by generating a nonce on Ledger device
+     * @param exchangeType - used by the exchange transport to discern between swap/sell/fund
+     *
+     * @returns - A transaction ID used to complete the exchange process
+     */
+    startExchange({ exchangeType, }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._request("exchange.start", { exchangeType });
+        });
+    }
+    /**
+     * @alpha
+     * Complete an exchange process by passing by the exchange content and its signature.
+     * User will be prompted on its device to approve the exchange.
+     * If the exchange is validated, the transaction is then signed and broadcasted to the network.
+     * @param provider - Used to verify the signature
+     * @param fromAccountId - Live identifier of the account used as a source for the tx
+     * @param toAccountId - (Swap) Live identifier of the account used as a destination
+     * @param transaction - Transaction containing the recipient and amount
+     * @param binaryPayload - Blueprint of the data that we'll allow signing
+     * @param signature - Ensures the source of the payload
+     * @param feesStrategy - Slow / Medium / Fast
+     * @param exchangeType - used by the exchange transport to discern between swap/sell/fund
+     *
+     * @returns - The broadcasted transaction details.
+     */
+    completeExchange({ provider, fromAccountId, toAccountId, transaction, binaryPayload, signature, feesStrategy, exchangeType, }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (exchangeType === types_1.ExchangeType.SWAP && !toAccountId) {
+                throw new Error("Missing parameter 'toAccountId' for a swap operation");
+            }
+            return this._request("exchange.complete", {
+                provider,
+                fromAccountId,
+                toAccountId,
+                transaction: (0, serializers_1.serializeTransaction)(transaction),
+                binaryPayload: binaryPayload.toString("hex"),
+                signature: signature.toString("hex"),
+                feesStrategy,
+                exchangeType,
+            });
+        });
+    }
+    /**
+     * Let the user sign a transaction through Ledger Live
+     * @param accountId - Ledger Live id of the account
+     * @param transaction - The transaction object in the currency family-specific format
+     * @param params - Parameters for the sign modal
+     *
+     * @returns The raw signed transaction to broadcast
+     */
+    signTransaction(accountId, transaction, params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._request("transaction.sign", {
+                accountId,
+                transaction: (0, serializers_1.serializeTransaction)(transaction),
+                params: params || {},
+            });
+        });
+    }
+    /**
+     * Let the user sign the provided message through Ledger Live. In Ethereum context, this is a [EIP-191 message](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md)
+     * @param accountId - Ledger Live id of the account
+     * @param message - Message the user should sign
+     *
+     * @returns Message signed
+     */
+    signMessage(accountId, message) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._request("message.sign", {
+                accountId,
+                message: message.toString("hex"),
+            });
+        });
+    }
+    /**
+     * Broadcast a previously signed transaction through Ledger Live
+     * @param accountId - Ledger Live id of the account
+     * @param signedTransaction - A [[RawSignedTransaction]] returned by Ledger Live when signing with [[signTransaction]]
+     *
+     * @returns The hash of the transaction
+     */
+    broadcastSignedTransaction(accountId, signedTransaction) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._request("transaction.broadcast", {
+                accountId,
+                signedTransaction,
+            });
+        });
+    }
+    /**
+     * List accounts added by user on Ledger Live
+     *
+     * @returns The list of accounts added by the current user on Ledger Live
+     */
+    listAccounts(params = {}) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const rawAccounts = yield this._request("account.list", params);
+            return rawAccounts.map(serializers_1.deserializeAccount);
+        });
+    }
+    /**
+     * Let user choose an account in a Ledger Live, providing filters for choosing currency or allowing add account.
+     *
+     * @param params - Parameters for the request modal, currencies is an array of currencies (not families).
+     *
+     * @returns The account selected by the user
+     */
+    requestAccount(params = {}) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const rawAccount = yield this._request("account.request", params);
+            return (0, serializers_1.deserializeAccount)(rawAccount);
+        });
+    }
+    /**
+     * Let user verify it's account address on his device through Ledger Live
+     *
+     * @param accountId - LL id of the account
+     *
+     * @returns The verified address or an error message if the verification doesn't succeed
+     */
+    receive(accountId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._request("account.receive", { accountId });
+        });
+    }
+    /**
+     * @ignore Not yet implemented
+     * Synchronize an account with its network and return an updated view of the account
+     * @param accountId - The id of the account to synchronize
+     *
+     * @returns - An updated view of the account
+     */
+    synchronizeAccount(_accountId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            throw new Error("Function is not implemented yet");
+        });
+    }
+    /**
+     * List cryptocurrencies supported by Ledger Live, providing filters by name or ticker
+     *
+     * @param params - Filters for currencies
+     *
+     * @returns The list of corresponding cryptocurrencies
+     *
+     * @beta Filtering not yet implemented
+     */
+    listCurrencies(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._request("currency.list", params || {});
+        });
+    }
+    /**
+     * @ignore Not yet implemented
+     * Get information about a currently connected device (firmware version...)
+     *
+     * @returns {Promise<DeviceInfo>} - Informations about the last connected device
+     */
+    getLastConnectedDeviceInfo() {
+        return __awaiter(this, void 0, void 0, function* () {
+            throw new Error("Function is not implemented yet");
+        });
+    }
+    /**
+     * @ignore Not yet implemented
+     * List applications opened on a currently connected device
+     *
+     * @returns {Promise<ApplicationDetails[]>} - The list of applications
+     */
+    listApps() {
+        return __awaiter(this, void 0, void 0, function* () {
+            throw new Error("Function is not implemented yet");
+        });
+    }
+}
+exports.default = LedgerLivePlatformSDK;

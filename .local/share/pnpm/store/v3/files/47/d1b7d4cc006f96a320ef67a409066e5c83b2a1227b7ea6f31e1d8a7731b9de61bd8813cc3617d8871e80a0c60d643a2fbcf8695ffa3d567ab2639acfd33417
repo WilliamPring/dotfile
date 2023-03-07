@@ -1,0 +1,5 @@
+import { CosmosTransaction, RawCosmosTransaction } from "./types";
+export declare const rawTx: RawCosmosTransaction;
+export declare const rawTxFull: Required<RawCosmosTransaction>;
+export declare const tx: CosmosTransaction;
+export declare const txFull: Required<CosmosTransaction>;

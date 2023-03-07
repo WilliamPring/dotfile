@@ -1,0 +1,13 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.txFull = exports.tx = exports.rawTxFull = exports.rawTx = void 0;
+const bignumber_js_1 = __importDefault(require("bignumber.js"));
+const transactionCommon_1 = require("../../mock/transactionCommon");
+const types_1 = __importDefault(require("../types"));
+exports.rawTx = Object.assign(Object.assign({}, transactionCommon_1.rawTxCommon), { family: types_1.default.COSMOS, mode: "send" });
+exports.rawTxFull = Object.assign(Object.assign({}, exports.rawTx), { fees: "10", gas: "100", memo: "[MEMO]" });
+exports.tx = Object.assign(Object.assign({}, transactionCommon_1.txCommon), { family: types_1.default.COSMOS, mode: "send" });
+exports.txFull = Object.assign(Object.assign({}, exports.tx), { fees: new bignumber_js_1.default(10), gas: new bignumber_js_1.default(100), memo: "[MEMO]" });
