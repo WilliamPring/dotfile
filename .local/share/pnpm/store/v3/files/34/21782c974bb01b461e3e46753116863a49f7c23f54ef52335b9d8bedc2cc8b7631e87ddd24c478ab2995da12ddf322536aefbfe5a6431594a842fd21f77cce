@@ -1,3 +1,0 @@
-import type { ViteDevServer } from 'vite';
-import type { Configuration } from './types';
-export declare function bootstrap(config: Configuration, server: ViteDevServer): Promise<void>;

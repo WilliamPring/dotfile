@@ -1,5 +1,0 @@
-/// <reference types="node" />
-import type { ParsedTransaction, Version } from "../../types/internal";
-import { TransactionSigningMode } from "../../types/internal";
-export declare function serializeTxInit(tx: ParsedTransaction, signingMode: TransactionSigningMode, numWitnesses: number, version: Version): Buffer;
-//# sourceMappingURL=txInit.d.ts.map

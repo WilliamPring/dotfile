@@ -1,1 +1,0 @@
-{"version":3,"file":"TextProposal.d.ts","sourceRoot":"","sources":["../../../../../src/transaction/msg/gov/proposal/TextProposal.ts"],"names":[],"mappings":"AACA,OAAO,EAAU,MAAM,EAAE,MAAM,kCAAkC,CAAC;AAKlE,eAAO,MAAM,YAAY;kBAQI,mBAAmB;eAL1B,MAAM;qBAGA,MAAM;sBAaZ,eAAe,CAAC,GAAG;;CAcxC,CAAC;AAEF,oBAAY,mBAAmB,GAAG;IAC9B,KAAK,EAAE,MAAM,CAAC;IACd,WAAW,EAAE,MAAM,CAAC;CACvB,CAAC"}

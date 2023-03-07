@@ -1,1 +1,0 @@
-{"version":3,"file":"certificate.d.ts","sourceRoot":"","sources":["../../src/parsing/certificate.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,iBAAiB,EAAE,MAAM,mBAAmB,CAAA;AAE1D,OAAO,KAAK,EAAE,WAAW,EAAC,MAAM,iBAAiB,CAAA;AAIjD,wBAAgB,gBAAgB,CAAC,IAAI,EAAE,WAAW,GAAG,iBAAiB,CAkCrE"}

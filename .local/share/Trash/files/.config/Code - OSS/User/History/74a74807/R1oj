@@ -1,5 +1,0 @@
-#!/bin/bash
-
-xset dpms force on
-sleep 5
-xset dpms force off

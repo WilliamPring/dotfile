@@ -1,5 +1,0 @@
-killall -u $USER 'scream'
-scream -i macvtap0@enp6s0 -o pulse &
-
-
-notify-send "sCREAM:" "AUDIO RESET"

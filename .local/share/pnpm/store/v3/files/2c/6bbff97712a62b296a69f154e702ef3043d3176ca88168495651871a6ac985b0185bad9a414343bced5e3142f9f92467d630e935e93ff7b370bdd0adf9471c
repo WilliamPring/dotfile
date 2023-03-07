@@ -1,1 +1,0 @@
-{"version":3,"file":"txAuxiliaryData.d.ts","sourceRoot":"","sources":["../../src/parsing/txAuxiliaryData.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAoC,qBAAqB,EAAwB,MAAM,mBAAmB,CAAA;AAEtH,OAAO,KAAK,EAA6B,OAAO,EAAC,eAAe,EAAE,MAAM,iBAAiB,CAAA;AAOzF,eAAO,MAAM,wCAAwC,KAAK,CAAA;AAE1D,wBAAgB,oBAAoB,CAAC,OAAO,EAAE,OAAO,EAAE,aAAa,EAAE,eAAe,GAAG,qBAAqB,CAiB5G"}

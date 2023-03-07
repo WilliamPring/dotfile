@@ -1,5 +1,0 @@
-import type { ParsedTxAuxiliaryData } from "../types/internal";
-import type { Network, TxAuxiliaryData } from "../types/public";
-export declare const CATALYST_REGISTRATION_VOTING_VKEY_LENGTH = 32;
-export declare function parseTxAuxiliaryData(network: Network, auxiliaryData: TxAuxiliaryData): ParsedTxAuxiliaryData;
-//# sourceMappingURL=txAuxiliaryData.d.ts.map

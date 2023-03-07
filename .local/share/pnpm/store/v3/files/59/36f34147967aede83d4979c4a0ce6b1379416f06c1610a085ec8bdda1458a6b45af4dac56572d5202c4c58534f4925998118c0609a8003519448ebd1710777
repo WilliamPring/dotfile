@@ -1,4 +1,0 @@
-import { BitcoinGetXPub } from "@ledgerhq/wallet-api-core";
-import type { RPCHandler } from "../types";
-export declare const getXPub: RPCHandler<BitcoinGetXPub["result"]>;
-//# sourceMappingURL=bitcoin.d.ts.map

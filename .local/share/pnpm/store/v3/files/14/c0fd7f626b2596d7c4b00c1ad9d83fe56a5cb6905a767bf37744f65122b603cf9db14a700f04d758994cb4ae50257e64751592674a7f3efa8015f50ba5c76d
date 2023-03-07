@@ -1,1 +1,0 @@
-{"version":3,"file":"txCertificate.d.ts","sourceRoot":"","sources":["../../../src/interactions/serialization/txCertificate.ts"],"names":[],"mappings":";AACA,OAAO,KAAK,EAAE,iBAAiB,EAAW,OAAO,EAAE,MAAM,sBAAsB,CAAA;AAO/E,wBAAgB,iCAAiC,CAC7C,WAAW,EAAE,iBAAiB,UAkCjC;AAED,wBAAgB,sBAAsB,CAClC,WAAW,EAAE,iBAAiB,EAC9B,OAAO,EAAE,OAAO,UAoCnB"}

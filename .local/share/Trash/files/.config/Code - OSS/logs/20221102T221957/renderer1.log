@@ -1,7 +1,0 @@
-[2022-11-02 22:20:08.705] [renderer1] [error] Error while registering log channel file:///home/will/.config/Code%20-%20OSS/logs/20221102T221957/userDataSync.log Timed out while waiting for file to be created
-[2022-11-03 00:01:12.826] [renderer1] [error] Unable to read file '/home/will/message.txt' (Error: File not modified since): Error: Unable to read file '/home/will/message.txt' (Error: File not modified since)
-    at u.doReadFileStream (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:608:20076)
-    at async v.doRead (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:42787)
-    at async v.readStream (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:42462)
-    at async Rr.resolveFromFile (vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2770:68542)
-    at async vscode-file://vscode-app/usr/lib/code/out/vs/workbench/workbench.desktop.main.js:2781:36966

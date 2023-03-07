@@ -1,5 +1,0 @@
-import { CryptoOrgTransaction, RawCryptoOrgTransaction } from "./types";
-export declare const rawTx: RawCryptoOrgTransaction;
-export declare const rawTxFull: Required<RawCryptoOrgTransaction>;
-export declare const tx: CryptoOrgTransaction;
-export declare const txFull: Required<CryptoOrgTransaction>;

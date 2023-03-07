@@ -1,5 +1,0 @@
-#!/bin/bash
-
-selection=$(rofi -i -width 1000 -theme solarized -dmenu $@ < $HOME/.local/share/snippets/bookmarks)
-kaomoji=$(echo $selection)
-echo -n "$kaomoji" | xclip -selection clipboard

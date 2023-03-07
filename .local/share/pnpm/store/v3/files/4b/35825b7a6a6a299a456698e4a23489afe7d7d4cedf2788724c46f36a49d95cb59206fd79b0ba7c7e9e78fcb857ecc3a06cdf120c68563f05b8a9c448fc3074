@@ -1,3 +1,0 @@
-import { RawTransactionCommon, TransactionCommon } from "..";
-export declare const rawTxCommon: Omit<RawTransactionCommon, "family">;
-export declare const txCommon: Omit<TransactionCommon, "family">;

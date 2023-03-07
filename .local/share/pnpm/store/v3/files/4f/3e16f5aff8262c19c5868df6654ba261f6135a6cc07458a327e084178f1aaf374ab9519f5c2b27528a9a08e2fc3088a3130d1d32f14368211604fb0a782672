@@ -1,5 +1,0 @@
-import { RawStellarTransaction, StellarTransaction } from "./types";
-export declare const rawTx: RawStellarTransaction;
-export declare const rawTxFull: Required<RawStellarTransaction>;
-export declare const tx: StellarTransaction;
-export declare const txFull: Required<StellarTransaction>;
