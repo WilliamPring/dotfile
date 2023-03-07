@@ -218,6 +218,7 @@ assign [class=Bitwarden-desktop|Pcmanfm] 3
 exec source ~/.zshrc
 # actual gaps
 gaps inner 4
+# exec --no-startup-id nohup easyeffects --gapplication-service &
 exec --no-startup-id nohup easyeffects --gapplication-service &
-exec --no-startup-id feh --bg-scale --randomize /media/background/*
-#exec --no-startup-id scream -o pulse -i br0 &
+#exec --no-startup-id feh --bg-scale --randomize /media/background/*
+exec --no-startup-id feh --bg-scale /media/background/$(ls /media/background | shuf -n 1)
