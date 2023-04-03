@@ -1,16 +1,17 @@
 # exclude file
 .thumbnails/**
 node_modules/**
-/dev/**
-/proc/**
-/sys/**
-/tmp/**
-/run/**
-/mnt/**
-/media/**
+/dev/*
+/proc/*
+/sys/*
+/dev/*
+/run/*
+/tmp/*
+/mnt/*
+/media/*
 /lost+found
-/config/**
-/var/log/**
+/config/*
+/var/log/*
 
 ###HOME
 /home/**/Downloads

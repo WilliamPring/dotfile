@@ -1,4 +1,4 @@
- sudo restic -r /media/tmp/backup --verbose backup / --exclude-file=/home/will/repos/dotfile/excludes-restic.txt
+sudo restic -r /media/tmp/backup backup / --exclude-file=/home/will/repos/dotfile/restic/excludes-restic.txt --verbose
 
  
 #Restore
