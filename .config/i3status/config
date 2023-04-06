@@ -29,7 +29,7 @@ ethernet bridge0 {
 
 path_exists VPN {
         format = "<span background='#bf616a'> %title: Connected </span>"
-        format_down = "<span background='#88c0d0'> VPN Disc </span>"
+        format_down = "<span background='#88c0d0'> 👀 VPN Disc </span>"
         path = "/proc/sys/net/ipv4/conf/proton0" 
 }
 
