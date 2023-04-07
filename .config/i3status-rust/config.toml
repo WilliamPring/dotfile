@@ -30,6 +30,12 @@ format = " $icon U:$mem_used.eng(w:2) A:$mem_avail.eng(w:2) "
 
 [[block]]
 block = "sound"
+driver = "auto"
+device_kind = "source"
+
+
+[[block]]
+block = "sound"
 [[block.click]]
 button = "left"
 cmd = "qpwgraph"
