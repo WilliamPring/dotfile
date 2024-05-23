@@ -16,6 +16,10 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 setopt INC_APPEND_HISTORY
+
+
+#Rangernvm
+export RANGER_LOAD_DEFAULT_RC=false
 # Aliases
 alias ls='ls --color=always'
 alias ll='ls -lath --color=auto'
@@ -30,6 +34,7 @@ alias xl='xrdb -load ~/.Xresources'
 alias dc='docker'
 alias nb='newsboat'
 alias reload-shell='source ~/.zshrc'
+alias cbg='feh --bg-scale /media/background/$(ls /media/background | shuf -n 1)'
 alias diff='diff --color=auto'
 alias :q='exit'
 alias diff='diff --color=auto'
@@ -37,12 +42,14 @@ export PATH=$PATH:$HOME/.local/bin
 export VISUAL=vim  
 export DEFAULT_USER="$(whoami)" 
 #My Github Config
-git config --global user.email "william.pring@pm.me"
+git config --global user.email "winvmlliam.pring@pm.me"
 git config --global user.name "William Pring"
 
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-    startx
+#rxvt half-screen spacing on launch  https://bugs.archlinux.org/task/77062
+if [[ `ps ho command $(ps ho ppid $$)` == 'urxvt' ]]; then
+  clear
 fi
 
 eval "$(starship init zsh)"
 source /usr/share/nvm/init-nvm.sh
+# source host/bin/activate

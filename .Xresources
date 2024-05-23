@@ -1,23 +1,20 @@
-URxvt.background:	#1F1D19
-URxvt.foreground:	#DEDEDE
+urxvt*termName:         rxvt
+urxvt*perl-lib:         /usr/lib/urxvt/perl/
+! Load perl extensions
+URxvt.perl-ext-common: default,selection-to-clipboard,pasta,matcher,keyboard-select,resize-font
+
 URxvt.saveLines:	6553
-
-
-URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-Shift-V: perl:pasta:paste
+URxvt.keysym.Control-Shift-C: eval:selection_to_clipboard
+URxvt.keysym.M-u:     perl:url-select:select_next
+URxvt.matcher.button: 1
+URxvt.clipboard.autocopy: true
 URxvt.iso14755: false
 URxvt.iso14755_52: false
-urxvt*termName:         rxvt
-urxvt*background:       #000000
-urxvt*foreground:       #cccccc
-urxvt*scrollBar:        false
-urxvt*perl-lib:         /usr/lib/urxvt/perl/
-urxvt*perl-ext-common:  default,matcher
-
 URxvt.urlLauncher:		firefox
 URxvt.url-launcher:   /usr/bin/firefox
-URxvt.underlineURLs:	true
-URxvt.urlButton:		1     
+URxvt.underlineURLs:	True
+URxvt.urlButton:		1
 
 URxvt.font: xft:DejaVu Sans Mono:size=12:antialias=true,xft:DejaVu Sans Mono for Powerline:size=12:antialias=true
 ! URxvt.font: xft:DejaVu Sans Mono:size=8:antialias=true,xft:DejaVu Sans Mono for Powerline:size=8:antialias=true
@@ -25,25 +22,52 @@ Xcursor.size: 8
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 URxvt.scrollBar: false
+
+! font
+! Ctrl++ (or Ctrl+Shift+=) to increase size
+! Ctrl+- to decrease size
+! Ctrl+= to reset size
+! Ctrl+? to see current size
+URxvt.keysym.C-Down:  resize-font:smaller
+URxvt.keysym.C-Up:    resize-font:bigger
+
+! base
+urxvt*background: #000000
+urxvt*foreground: #cccccc
+URxvt.shading:       20
+URxvt.transparent:   true
+URxvt.tintColor:     white
 URxvt.cursorUnderline: true
 URxvt.internalBorder: 10
 
-URxvt.transparent:   true
-URxvt.tintColor:     white
-URxvt.shading:       20 
-URxvt*color0:      #000000
-URxvt*color1:      #9e1828
-URxvt*color2:      #aece92
-URxvt*color3:      #968a38
-URxvt*color4:      #414171
-URxvt*color5:      #963c59
-URxvt*color6:      #418179
-URxvt*color7:      #bebebe
-URxvt*color8:      #666666
-URxvt*color9:      #cf6171
-URxvt*color10:     #c5f779
-URxvt*color11:     #fff796
-URxvt*color12:     #4186be
-URxvt*color13:     #cf9ebe
-URxvt*color14:     #71bebe
-URxvt*color15:     #ffffff
+! black
+URxvt.color0: #494D64
+URxvt.color8: #5B6078
+
+! red
+URxvt.color1: #ED8796
+URxvt.color9: #ED8796
+
+! green
+URxvt.color2: #A6DA95
+URxvt.color10: #A6DA95
+
+! yellow
+URxvt.color3: #EED49F
+URxvt.color11: #EED49F
+
+! blue
+URxvt.color4: #8AADF4
+URxvt.color12: #8AADF4
+
+! magenta
+URxvt.color5: #F5BDE6
+URxvt.color13: #F5BDE6
+
+! cyan
+URxvt.color6: #8BD5CA
+URxvt.color14: #8BD5CA
+
+! white
+URxvt.color7: #B8C0E0
+URxvt.color15: #A5ADCB
