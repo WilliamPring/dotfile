@@ -10,6 +10,7 @@ icons = "awesome6"
 [[block]]
 block = "notify"
 
+
 [[block]]
 block = "custom"
 command = 'dir /proc/sys/net/ipv4/conf/proton0 >nul 2>&1 && (echo VPN) || (echo VPN Disc)'
@@ -39,9 +40,6 @@ block = "sound"
 [[block.click]]
 button = "left"
 cmd = "qpwgraph"
-
-[[block]]
-block = "uptime"
 
 [[block]]
 block = "time"
