@@ -1,0 +1,49 @@
+[icons]
+icons = "awesome6"
+
+[[block]]
+block = "notify"
+
+[[block]]
+block = "packages"
+package_manager = ["aur"]
+interval = 600
+error_interval = 300
+format = " $icon AUR $total updates available "
+aur_command = "yay -Qua"
+
+[[block]]
+block = "net"
+device = "enp5s0"
+format = " $icon Wired $speed_up.eng(prefix:K) $speed_down.eng(prefix:K) "
+interval = 5
+
+[[block]]
+block = "custom"
+command = 'dir /proc/sys/net/ipv4/conf/proton0 >nul 2>&1 && (echo VPN) || (echo VPN Disc)'
+interval = 5
+
+[[block]]
+block = "memory"
+format = " $icon U:$mem_used.eng(w:2) A:$mem_avail.eng(w:2) "
+
+[[block]]
+block = "sound"
+driver = "auto"
+device_kind = "source"
+
+[[block]]
+block = "sound"
+[[block.click]]
+button = "left"
+cmd = "qpwgraph"
+
+[[block]]
+block = "uptime"
+
+[[block]]
+block = "time"
+interval = 1
+[block.format]
+full = " $icon $timestamp.datetime(f:'%Y-%m-%d %H:%M:%S(%a)') "
+

@@ -1,0 +1,53 @@
+general {
+        color_good = '#2f343f'
+        color_degraded = '#FAFAFA'
+        color_bad = '#D50000'
+}
+
+order += "cpu_temperature 0"
+order += "memory"
+order += "ethernet enp6s0"
+order += "path_exists VPN"
+order += "volume master"
+order += "tztime local"
+
+
+cpu_temperature 0 {
+        format = "<span background='#bf616a'> temp: %degrees C </span>"
+        path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+memory {
+        format = "<span background='#b48ead'> u: %used| a: %available </span>"
+}
+
+ethernet bridge0 {
+        format_up = "<span background='#4CAF50'> %ip </span>"
+        format_down = "<span background='#88c0d0'> Int Disc </span>"
+}
+
+
+path_exists VPN {
+        format = "<span background='#bf616a'> %title: Connected </span>"
+        format_down = "<span background='#88c0d0'> 👀 VPN Disc </span>"
+        path = "/proc/sys/net/ipv4/conf/proton0" 
+}
+
+volume master {
+        format = "<span background='#ebcb8b'> vol:%volume </span>"
+        format_muted = "<span background='#CFD8DC'> ? Muted </span>"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+tztime local {
+        format = "<span background='#00838F'> %Y-%m-%d %H:%M:%S </span>"
+}
+general {
+        output_format = "i3bar"
+        markup = pango
+        interval = 5
+        color_good = '#2f343f'
+        color_degraded = '#FAFAFA'
+        color_bad = '#D50000'
+}
