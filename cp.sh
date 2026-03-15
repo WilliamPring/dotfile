@@ -1,58 +1,96 @@
 #!/bin/bash
+# Sync dotfiles from ~ and ~/.config into this repo.
+# Run this before committing to keep the repo up to date.
+set -euo pipefail
 
-# Define source and destination for dotfiles
-SOURCE_CONFIG_DIR="$HOME/.config"  # .config directory as source
-SOURCE_HOME_DIR="$HOME"  # Home directory as source
-DEST_CONFIG_DIR="$HOME/repos/dotfile/.config"  # Destination directory for .config files
-DEST_HOME_DIR="$HOME/repos/dotfile/.config-home"  # Destination directory for home directory files
+REPO="$(cd "$(dirname "$0")" && pwd)"
+CONF="$REPO/.config"
+HOME_DIR="$REPO/home"
 
+# --- ~/.config directories ---
+CONFIG_DIRS=(
+  i3
+  i3status-rust
+  i3-resurrect
+  rofi
+  newsboat
+  ranger
+  keyboard
+  easyeffects
+  jack_mixer
+  patchbay
+  mpv
+  kitty
+  yazi
+  htop
+  autostart
+  systemd
+)
 
-# List of directories to be copied from ~/.config
-CONFIG_ITEMS=("keyboard" "newsboat" "rofi" "starship.toml" "i3" "i3status" "ranger" "audio-mapper.carxp")
+# --- ~/.config single files ---
+CONFIG_FILES=(
+  starship.toml
+  antigenrc
+  audio-mapper.carxp
+  will-linux.qpwgraph
+  pavucontrol.ini
+)
 
-# List of files to be copied from ~ (home directory)
-HOME_FILES=(".zshrc" ".vimrc" ".Xauthority" ".xinitrc" ".Xresources")
+# --- ~/  files (non-sensitive) ---
+HOME_FILES=(
+  .zshrc
+  .gitconfig
+  .xprofile
+  .bash_profile
+)
 
+echo "Syncing dotfiles → $REPO"
 
-# Function to sync dotfiles from ~/.config to the repo
-SYNC_CONFIG_DOTFILES() {
-    echo "Syncing dotfiles from .config..."
-    for ITEM in "${CONFIG_ITEMS[@]}"; do
-        SOURCE_PATH="$SOURCE_CONFIG_DIR/$ITEM"
-        DEST_PATH="$DEST_CONFIG_DIR/$ITEM"
-        
-        if [ -d "$SOURCE_PATH" ]; then
-            # If it's a directory, copy recursively
-            echo "Copying directory $ITEM..."
-            cp -r "$SOURCE_PATH" "$DEST_PATH"
-        elif [ -f "$SOURCE_PATH" ]; then
-            # If it's a file, copy normally
-            echo "Copying file $ITEM..."
-            cp "$SOURCE_PATH" "$DEST_PATH"
-        else
-            echo "$ITEM does not exist in the source directory."
-        fi
-    done
-}
+# Sync .config directories (remove dest first to avoid nesting bug with cp -r)
+for dir in "${CONFIG_DIRS[@]}"; do
+  src="$HOME/.config/$dir"
+  dest="$CONF/$dir"
+  if [ -d "$src" ]; then
+    rm -rf "$dest"
+    cp -r "$src" "$dest"
+    echo "  [.config] $dir"
+  fi
+done
 
-# Function to sync dotfiles from ~ (home directory) to the repo
-SYNC_HOME_DOTFILES() {
-    echo "Syncing dotfiles from home directory..."
-    for ITEM in "${HOME_FILES[@]}"; do
-        SOURCE_PATH="$SOURCE_HOME_DIR/$ITEM"
-        DEST_PATH="$DEST_HOME_DIR/$ITEM"
-        
-        if [ -f "$SOURCE_PATH" ]; then
-            # If it's a file, copy normally
-            echo "Copying file $ITEM..."
-            cp "$SOURCE_PATH" "$DEST_PATH"
-        else
-            echo "$ITEM does not exist in the source directory."
-        fi
-    done
-}
+# Remove files that must not be versioned
+rm -f "$CONF/newsboat/cache.db"
 
-SYNC_CONFIG_DOTFILES
-SYNC_HOME_DOTFILES
+# Sync .config single files
+for f in "${CONFIG_FILES[@]}"; do
+  src="$HOME/.config/$f"
+  if [ -f "$src" ]; then
+    cp "$src" "$CONF/$f"
+    echo "  [.config] $f"
+  fi
+done
 
-echo "Sync completed."
+# git global ignore (not the gitconfig itself - that's in home/)
+if [ -f "$HOME/.config/git/ignore" ]; then
+  mkdir -p "$CONF/git"
+  cp "$HOME/.config/git/ignore" "$CONF/git/ignore"
+  echo "  [.config] git/ignore"
+fi
+
+# antigen.zsh (zsh plugin manager)
+if [ -f "$HOME/antigen.zsh" ]; then
+  cp "$HOME/antigen.zsh" "$REPO/antigen.zsh"
+  echo "  [root] antigen.zsh"
+fi
+
+# Sync home dotfiles
+mkdir -p "$HOME_DIR"
+for f in "${HOME_FILES[@]}"; do
+  src="$HOME/$f"
+  if [ -f "$src" ]; then
+    cp "$src" "$HOME_DIR/$f"
+    echo "  [home] $f"
+  fi
+done
+
+echo ""
+echo "Done. Review with: git -C \"$REPO\" diff --stat"

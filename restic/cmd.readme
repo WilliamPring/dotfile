@@ -1,6 +1,0 @@
-sudo restic -r /media/tmp/backup backup / --exclude-file=/home/will/repos/dotfile/restic/excludes-restic.txt --verbose
-
- 
-#Restore
-sudo restic -r /media/tmp/backup restore 99b21f75 --target ~/restore
-

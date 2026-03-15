@@ -1,0 +1,25 @@
+# Claude Code settings (contains API keys/tokens)
+.claude/
+
+# Git identity (name + email - personal data)
+home/.gitconfig
+
+# Compiled/cache files
+*.zwc
+*.pyc
+__pycache__/
+
+# Newsboat database
+.config/newsboat/cache.db
+
+# EasyEffects runtime db (not config)
+.config/easyeffects/db/
+
+# i3status-rust backup
+.config/i3status-rust/bak
+
+# Yazi third-party flavors (external git repo, cloned by install.sh)
+.config/yazi/flavors/
+
+# Backup files
+*.bak

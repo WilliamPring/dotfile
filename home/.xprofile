@@ -1,0 +1,14 @@
+#!/bin/sh
+# ~/.xprofile - automatically sets up monitors on login
+
+# Set monitor layout with correct positions and refresh rates
+xrandr \
+  --output DisplayPort-2 --mode 2560x1440 --rate 144 --primary \
+  --output DisplayPort-1 --mode 2560x1440 --rate 59.95 --left-of DisplayPort-2 \
+  --output DisplayPort-0 --mode 2560x1440 --rate 59.95 --right-of DisplayPort-2
+
+
+# Optional: set wallpaper (if you use feh)
+# feh --bg-scale /path/to/wallpaper.jpg
+
+# You can add other startup commands below

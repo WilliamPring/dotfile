@@ -1,0 +1,8 @@
+brave-bin
+mullvad-vpn-bin
+protonup-qt
+ryujinx-git
+tmux-resurrect
+witr
+yay-bin
+yay-bin-debug
