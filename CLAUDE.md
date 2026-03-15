@@ -5,11 +5,12 @@ Arch Linux dotfiles for an i3-based desktop.
 ## Layout
 
 ```
-home/               → deploys to ~/  (.zshrc, .vimrc, .tmux.conf, .xinitrc, .xprofile, .Xresources, .bash_profile)
+home/               → deploys to ~/  (.zshrc, .vimrc, .tmux.conf, .xinitrc, .xprofile, .Xresources, .bash_profile, .gitconfig)
 .config/            → deploys to ~/.config/
 background/         → wallpapers deployed to /media/background/
 antigen.zsh         → zsh plugin manager binary
-cp.sh               → syncs home → repo (run before committing)
+cp.sh               → capture: syncs ~ and ~/.config into this repo (run before committing)
+deploy.sh           → restore: deploys repo files back to ~ and ~/.config (use on fresh machine)
 scripts/install.sh  → full fresh Arch install (pacman + AUR)
 scripts/pkglist.txt       → 112 explicit pacman packages
 scripts/pkglist-aur.txt   → 8 AUR packages
@@ -41,6 +42,37 @@ scripts/pkglist-aur.txt   → 8 AUR packages
 | `.config/systemd/` | systemd user services |
 | `.config/i3-resurrect/` | i3 session restore |
 
+## Scripts
+
+### `cp.sh` — capture dotfiles into repo
+
+Copies live dotfiles from `~` and `~/.config/` into the repo. Run before committing.
+
+```bash
+./cp.sh              # sync everything
+./cp.sh --dry-run    # preview changes without touching any files
+./cp.sh -n           # shorthand for --dry-run
+```
+
+- Syncs all entries in `CONFIG_DIRS`, `CONFIG_FILES`, and `HOME_FILES`
+- Removes excluded files (e.g. `newsboat/cache.db`) after syncing
+- Warns about any `~/.config/` directories that exist on disk but aren't tracked in `CONFIG_DIRS`
+- Runs `git diff --stat` automatically when done
+
+To add a new config directory: add its name to `CONFIG_DIRS` in `cp.sh` **and** `deploy.sh`.
+
+### `deploy.sh` — restore dotfiles from repo
+
+The inverse of `cp.sh`. Copies files from the repo back to `~` and `~/.config/`. Use on a fresh machine after cloning.
+
+```bash
+./deploy.sh              # deploy everything (overwrites existing files)
+./deploy.sh --dry-run    # preview what would be written
+./deploy.sh -n           # shorthand for --dry-run
+```
+
+> Existing files at the destination are overwritten without prompting. Always run `--dry-run` first on a machine with existing config.
+
 ## System Stack
 
 - **WM**: i3 + i3status-rust
@@ -60,9 +92,17 @@ scripts/pkglist-aur.txt   → 8 AUR packages
 
 ## Workflow
 
-1. Edit dotfiles in `~/.config/` or `~/`
-2. Run `cp.sh` to sync changes into this repo
-3. Commit and push
-4. On a new machine: run `scripts/install.sh`, then manually copy files from repo
+### Updating dotfiles
 
-> There is no automated restore script — deployments are done manually.
+1. Edit dotfiles in `~/.config/` or `~/`
+2. Run `./cp.sh --dry-run` to preview changes
+3. Run `./cp.sh` to sync into repo
+4. Commit and push
+
+### Fresh machine setup
+
+1. Run `scripts/install.sh` (installs pacman + AUR packages)
+2. Clone this repo
+3. Run `./deploy.sh --dry-run` to review
+4. Run `./deploy.sh` to deploy all dotfiles
+5. `source ~/.zshrc` to reload shell
