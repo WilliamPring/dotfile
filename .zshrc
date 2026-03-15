@@ -1,13 +1,54 @@
+# ~/.zshrc
 setopt autocd
+eval "$(starship init zsh)"
 
+# Fast completion system
+autoload -Uz compinit
+compinit -C -d ~/.cache/zcompdump
+
+eval "$(starship init zsh)"
+
+# Antigen plugin manager
 source "$HOME/antigen.zsh"
-antigen init "$HOME/.config/antigenrc"
 
+# ----------------------------
+# Antigen Core Start 
+# bundles 
+# ----------------------------
+
+# Extra completions
+antigen bundle zsh-users/zsh-completions
+
+# Syntax highlighting and suggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-history-substring-search lazy
+
+# Alias suggestions
+antigen bundle djui/alias-tips lazy
+
+# Fuzzy finder
+antigen bundle junegunn/fzf lazy
+
+# Git helpers & aliases
+antigen bundle ohmyzsh/ohmyzsh path:plugins/git lazy
+
+# Directory jumping
+#antigen bundle wting/autojump lazy
+
+antigen apply
+# ----------------------------
+# Antigen end 
+# ----------------------------
+
+
+
+
+
+# Autosuggest keybinding
 bindkey '^P' autosuggest-accept
 
-# history and browsing history config
-# https://zsh.sourceforge.io/Doc/Release/Options.html#History
-# https://github.com/ohmyzsh/ohmyzsh/issues/1720#issuecomment-286366959
+# History settings
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
@@ -17,15 +58,11 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 setopt INC_APPEND_HISTORY
 
-
-#Rangernvm
-export RANGER_LOAD_DEFAULT_RC=false
 # Aliases
 alias ls='ls --color=always'
 alias ll='ls -lath --color=auto'
+alias fm='yazi'
 alias grep='grep --color=auto'
-alias pc='sudo protonvpn c'
-alias pd='sudo protonvpn d'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias ta='tmux a -t'
 alias tn='tmux new -s'
@@ -37,19 +74,17 @@ alias reload-shell='source ~/.zshrc'
 alias cbg='feh --bg-scale /media/background/$(ls /media/background | shuf -n 1)'
 alias diff='diff --color=auto'
 alias :q='exit'
-alias diff='diff --color=auto'
+
+# Paths and editor
 export PATH=$PATH:$HOME/.local/bin
 export VISUAL=vim  
 export DEFAULT_USER="$(whoami)" 
-#My Github Config
-git config --global user.email "winvmlliam.pring@pm.me"
-git config --global user.name "William Pring"
 
-#rxvt half-screen spacing on launch  https://bugs.archlinux.org/task/77062
-if [[ `ps ho command $(ps ho ppid $$)` == 'urxvt' ]]; then
-  clear
-fi
+export NVM_DIR="$HOME/.nvm"
 
-eval "$(starship init zsh)"
-source /usr/share/nvm/init-nvm.sh
-# source host/bin/activate
+nvm() {
+  unset -f nvm
+  source /usr/share/nvm/init-nvm.sh
+  nvm "$@"
+}
+
