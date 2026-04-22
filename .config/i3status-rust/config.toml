@@ -18,6 +18,13 @@ warning = 20.0
 alert = 10.0
 
 [[block]]
+block = "custom"
+interval = 600
+command = "sh -c 'p=$(pacman -Qu --dbpath /tmp/checkup-db-i3statusrs-$USER 2>/dev/null | wc -l); a=$(yay -Qua 2>/dev/null | wc -l); echo \"pacman $p yay $a\"'"
+format = " $text"
+
+
+[[block]]
 block = "net"
 format = " $icon {$signal_strength $ssid $frequency|Wired} $speed_up.eng(prefix:K) $speed_down.eng(prefix:K) "
 interval = 5
